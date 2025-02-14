@@ -13,6 +13,8 @@ from telebot import types
 from requests.exceptions import ProxyError, ConnectionError
 from urllib3.exceptions import MaxRetryError
 from http.client import RemoteDisconnected
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # Загрузка токенов из .env
 load_dotenv()
@@ -42,34 +44,32 @@ PAYMENT_INFO = """
 # Инициализация бота
 bot = telebot.TeleBot(TOKEN)
 
-def clear_all_logs():
-    """Очищает все лог файлы"""
-    log_files = [
-        "bot.log",
-        "database.log",  # если есть
-        "spotify.log",   # если есть
-        "yandex.log"    # если есть
-    ]
-    
-    for log_file in log_files:
-        try:
-            with open(log_file, "w", encoding='utf-8') as f:
-                f.write("")
-            logger.info(f"Cleared log file: {log_file}")
-        except Exception as e:
-            print(f"Error clearing log file {log_file}: {e}")
-
-# Очищаем все логи при запуске
-clear_all_logs()
+# Очищаем лог файл при запуске
+with open("bot.log", "w") as f:
+    f.write("")
 
 # Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     filename="bot.log",
-    filemode='w'  # Режим 'w' для перезаписи файла
+    filemode='w'  # Добавляем режим 'w' для перезаписи файла
 )
 logger = logging.getLogger(__name__)
+
+# Настройка сессии requests с повторными попытками
+session = requests.Session()
+retry_strategy = Retry(
+    total=3,
+    backoff_factor=1,
+    status_forcelist=[429, 500, 502, 503, 504],
+)
+adapter = HTTPAdapter(max_retries=retry_strategy)
+session.mount("https://", adapter)
+session.mount("http://", adapter)
+
+# Настройка таймаутов для бота
+bot.timeout = 30  # Увеличиваем таймаут до 30 секунд
 
 # Пример использования логов
 @bot.message_handler(commands=["start"])
@@ -685,25 +685,43 @@ def show_help(message):
 schedule.every(1).hours.do(check_new_releases)  # Проверка каждые 1 час
 
 def show_main_menu(chat_id, message_text="Выберите действие:", reply_to_message_id=None):
-    vip_level = get_vip_level(chat_id)
-    current_subs = len(get_subscriptions(chat_id))
-    max_subs = get_max_subscriptions(chat_id)
-    
-    status_text = (
-        f"📝 Подписки: {current_subs}/{max_subs}\n\n"
-        f"{message_text}"
-    )
-    
-    markup = types.InlineKeyboardMarkup(row_width=1)
-    subscriptions_btn = types.InlineKeyboardButton("📋 Подписки", callback_data="menu_subscriptions")
-    mix_btn = types.InlineKeyboardButton("🎵 Создать микс", callback_data="create_mix")
-    balance_btn = types.InlineKeyboardButton("💰 Купить слоты", callback_data="menu_balance")
-    settings_btn = types.InlineKeyboardButton("⚙️ Настройки", callback_data="menu_settings")
-    support_btn = types.InlineKeyboardButton("💝 Поддержать разработчика", callback_data="menu_support")
-    
-    markup.add(subscriptions_btn, mix_btn, balance_btn, settings_btn, support_btn)
-    
-    return bot.send_message(chat_id, status_text, reply_markup=markup)
+    try:
+        vip_level = get_vip_level(chat_id)
+        current_subs = len(get_subscriptions(chat_id))
+        max_subs = get_max_subscriptions(chat_id)
+        
+        status_text = (
+            f"📝 Подписки: {current_subs}/{max_subs}\n\n"
+            f"{message_text}"
+        )
+        
+        markup = types.InlineKeyboardMarkup(row_width=1)
+        subscriptions_btn = types.InlineKeyboardButton("📋 Подписки", callback_data="menu_subscriptions")
+        mix_btn = types.InlineKeyboardButton("🎵 Создать микс", callback_data="create_mix")
+        balance_btn = types.InlineKeyboardButton("💰 Купить слоты", callback_data="menu_balance")
+        settings_btn = types.InlineKeyboardButton("⚙️ Настройки", callback_data="menu_settings")
+        support_btn = types.InlineKeyboardButton("💝 Поддержать разработчика", callback_data="menu_support")
+        
+        markup.add(subscriptions_btn, mix_btn, balance_btn, settings_btn, support_btn)
+        
+        return bot.send_message(
+            chat_id,
+            status_text,
+            reply_markup=markup,
+            timeout=30  # Добавляем таймаут
+        )
+    except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
+        # Повторная попытка с увеличенным таймаутом
+        time.sleep(2)
+        return bot.send_message(
+            chat_id,
+            status_text,
+            reply_markup=markup,
+            timeout=60
+        )
+    except Exception as e:
+        logger.error(f"Error in show_main_menu: {e}")
+        return None
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("menu_"))
 def handle_menu(call):
@@ -1357,14 +1375,30 @@ def handle_create_mix(call):
 
 def create_yandex_playlist(tracks, title="Случайный микс"):
     try:
+        # Проверяем токен
+        if not yandex_client.token:
+            logger.error("No Yandex Music token available")
+            return None
+            
+        # Проверяем пользователя
+        try:
+            user_id = yandex_client.me.account.uid
+            logger.info(f"Got user_id: {user_id}")
+        except Exception as e:
+            logger.error(f"Failed to get user info: {e}")
+            return None
+        
         # Создаем новый плейлист
-        user_id = yandex_client.me.account.uid
-        playlist = yandex_client.users_playlists_create(
-            title=title,
-            visibility="public",
-            user_id=user_id
-        )
-        logger.info(f"Created playlist with kind={playlist.kind}")
+        try:
+            playlist = yandex_client.users_playlists_create(
+                title=title,
+                visibility="public",
+                user_id=user_id
+            )
+            logger.info(f"Created playlist with kind={playlist.kind}")
+        except Exception as e:
+            logger.error(f"Failed to create playlist: {e}")
+            return None
         
         # Получаем информацию о треках
         tracks_info = []
@@ -1373,14 +1407,17 @@ def create_yandex_playlist(tracks, title="Случайный микс"):
                 try:
                     track_id = int(track['link'].split('/')[-1])
                     track_info = yandex_client.tracks([track_id])[0]
-                    if track_info and track_info.albums:
-                        tracks_info.append({
-                            'track_id': track_id,
-                            'album_id': track_info.albums[0].id
-                        })
-                        logger.info(f"Added track {track_id} to queue")
+                    
+                    if not track_info or not track_info.albums:
+                        continue
+                        
+                    tracks_info.append({
+                        'id': str(track_id),
+                        'albumId': str(track_info.albums[0].id)
+                    })
+                    logger.info(f"Added track {track_id} to queue")
                 except Exception as e:
-                    logger.error(f"Error processing track {track['link']}: {e}")
+                    logger.error(f"Error processing track {track.get('link', 'unknown')}: {e}")
                     continue
         
         if not tracks_info:
@@ -1388,60 +1425,57 @@ def create_yandex_playlist(tracks, title="Случайный микс"):
             return None
         
         try:
-            # Создаем список изменений для всех треков
-            tracks_to_add = []
-            for track in tracks_info:
-                tracks_to_add.append({
-                    'op': 'insert',
-                    'at': 0,
-                    'tracks': [track]
-                })
-
-            # Формируем запрос
-            url = f"https://api.music.yandex.net/users/{user_id}/playlists/{playlist.kind}/change"
-            headers = {
-                "Authorization": f"OAuth {yandex_client.token}",
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
+            # Получаем актуальную версию плейлиста
+            current_playlist = yandex_client.users_playlists(kind=playlist.kind)
             
-            # Формируем данные в правильном формате
-            diff_data = [{
+            # Создаем изменения для плейлиста
+            diff = [{
                 'op': 'insert',
                 'at': 0,
-                'tracks': tracks_to_add
+                'tracks': []
             }]
             
-            # Создаем форму данных
-            form_data = {
-                'diff': json.dumps(diff_data),
-                'revision': playlist.revision
+            # Добавляем треки в diff
+            for track in tracks_info:
+                track_obj = {
+                    'id': int(track['id']),
+                    'albumId': int(track['albumId'])
+                }
+                diff[0]['tracks'].append(track_obj)
+            
+            # Формируем данные для запроса
+            data = {
+                'kind': playlist.kind,
+                'revision': current_playlist.revision,
+                'diff': json.dumps(diff)
             }
             
-            logger.info(f"Sending request with form data: {form_data}")
-            response = requests.post(url, headers=headers, data=form_data)
-            logger.info(f"API Response: {response.text}")
+            # Отправляем запрос через API клиент
+            base_url = "https://api.music.yandex.net"
+            url = f"{base_url}/users/{yandex_client.me.account.uid}/playlists/{playlist.kind}/change-relative"
             
-            if response.status_code == 200:
-                logger.info("Successfully added all tracks to playlist")
-                return f"https://music.yandex.ru/users/{user_id}/playlists/{playlist.kind}"
+            response = yandex_client._request.post(
+                url,
+                data,
+                timeout=30
+            )
+            
+            if isinstance(response, dict):
+                logger.info(f"Successfully added {len(tracks_info)} tracks")
+                time.sleep(2)  # Даем время на обновление плейлиста
             else:
-                logger.error(f"Failed to add tracks: {response.text}")
-                try:
-                    yandex_client.users_playlists_delete(kind=playlist.kind)
-                except:
-                    pass
-                return None
+                logger.error(f"Failed to modify playlist: {response}")
+            
+            # В любом случае возвращаем ссылку на плейлист
+            logger.info("Returning playlist link")
+            return f"https://music.yandex.ru/users/{yandex_client.me.account.uid}/playlists/{playlist.kind}"
             
         except Exception as e:
-            logger.error(f"Error modifying playlist: {e}")
-            try:
-                yandex_client.users_playlists_delete(kind=playlist.kind)
-            except Exception as del_e:
-                logger.error(f"Error deleting failed playlist: {del_e}")
-            return None
+            logger.error(f"Error in playlist modification: {e}")
+            return f"https://music.yandex.ru/users/{yandex_client.me.account.uid}/playlists/{playlist.kind}"
             
     except Exception as e:
-        logger.error(f"Error creating Yandex Music playlist: {e}")
+        logger.error(f"Error in create_yandex_playlist: {e}")
         return None
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("mix_platform:"))
@@ -1532,7 +1566,7 @@ def handle_mix_platform(call):
                 logger.error(f"Error in Spotify playlist creation: {e}")
         
         # Формируем сообщение с миксом
-        message_text = f"🎵 Ваш случайный микс в {platform}:\n\n"
+        message_text = f"Ваш случайный микс в {platform}:\n\n"
         for i, track in enumerate(selected_tracks, 1):
             message_text += f"{i}. {track['artist']} - {track['name']}\n"
             if track.get('link'):
@@ -1731,15 +1765,22 @@ if __name__ == "__main__":
         while True:
             try:
                 logger.info("Запуск бота...")
-                bot.polling(none_stop=True, timeout=60)
-            except ProxyError as e:
-                logger.error(f"Ошибка прокси: {e}")
-                time.sleep(10)
-            except (ConnectionError, MaxRetryError, RemoteDisconnected) as e:
-                logger.error(f"Ошибка подключения: {e}")
-                time.sleep(10)
+                bot.polling(none_stop=True, timeout=60, long_polling_timeout=30)
+            except requests.exceptions.Timeout as e:
+                logger.error(f"Timeout error: {e}")
+                time.sleep(15)
+            except requests.exceptions.ConnectionError as e:
+                logger.error(f"Connection error: {e}")
+                time.sleep(15)
+            except telebot.apihelper.ApiTelegramException as e:
+                if "Too Many Requests" in str(e):
+                    logger.error("Rate limit exceeded, waiting...")
+                    time.sleep(60)
+                else:
+                    logger.error(f"Telegram API error: {e}")
+                    time.sleep(10)
             except Exception as e:
-                logger.error(f"Неизвестная ошибка: {e}")
+                logger.error(f"Unexpected error: {e}")
                 time.sleep(10)
     
     def run_scheduler():

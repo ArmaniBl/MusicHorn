@@ -1,11 +1,16 @@
 import sqlite3
 import logging
 
+# Очищаем лог файл при запуске
+with open("database.log", "w") as f:
+    f.write("")
+
 # Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    filename="database.log"
+    filename="database.log",
+    filemode='w'  # Добавляем режим 'w' для перезаписи файла
 )
 logger = logging.getLogger(__name__)
 # Подключение к базе данных (файл database.db)
