@@ -979,55 +979,53 @@ def get_spotify_top_tracks(artist_id):
         token = get_spotify_token()
         headers = {"Authorization": f"Bearer {token}"}
         
-        # Получаем топ треки артиста напрямую
-        top_tracks_response = requests.get(
-            f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks",
-            headers=headers,
-            params={"market": "US"}  # или другой рынок
-        )
-        
-        if top_tracks_response.status_code != 200:
-            return None
-            
         all_tracks = []
-        tracks = top_tracks_response.json()['tracks']
+        max_tracks_per_album = 5
+        total_tracks_limit = 15
         
-        # Добавляем топ треки
-        for track in tracks:
-            all_tracks.append({
-                'name': track['name'],
-                'link': track['external_urls']['spotify']
-            })
-        
-        # Получаем последние релизы (опционально)
+        # Получаем все альбомы артиста
         albums_response = requests.get(
             f"https://api.spotify.com/v1/artists/{artist_id}/albums",
             headers=headers,
             params={
-                "limit": 3,  # Берем только 3 последних альбома
-                "include_groups": "album,single"
+                "include_groups": "album,single",
+                "limit": 50  # Максимальное количество альбомов
             }
         )
         
-        if albums_response.status_code == 200:
-            albums = albums_response.json()['items']
+        if albums_response.status_code != 200:
+            return None
             
-            # Для каждого альбома получаем несколько треков
-            for album in albums:
-                tracks_response = requests.get(
-                    f"https://api.spotify.com/v1/albums/{album['id']}/tracks",
-                    headers=headers,
-                    params={"limit": 5}  # Берем только 5 треков из каждого альбома
-                )
-                if tracks_response.status_code == 200:
-                    tracks = tracks_response.json()['items']
-                    for track in tracks:
-                        all_tracks.append({
-                            'name': track['name'],
-                            'link': track['external_urls']['spotify']
-                        })
+        albums = albums_response.json()['items']
         
-        return all_tracks
+        for album in albums:
+            if len(all_tracks) >= total_tracks_limit:
+                break
+                
+            # Получаем треки из альбома
+            tracks_response = requests.get(
+                f"https://api.spotify.com/v1/albums/{album['id']}/tracks",
+                headers=headers
+            )
+            
+            if tracks_response.status_code != 200:
+                continue
+                
+            tracks = tracks_response.json()['items']
+            track_count = 0
+            
+            for track in tracks:
+                if track_count >= max_tracks_per_album or len(all_tracks) >= total_tracks_limit:
+                    break
+                    
+                all_tracks.append({
+                    'name': track['name'],
+                    'link': track['external_urls']['spotify']
+                })
+                track_count += 1
+        
+        return all_tracks[:total_tracks_limit]  # Гарантируем максимальное количество треков
+        
     except Exception as e:
         logger.error(f"Error in get_spotify_top_tracks: {e}")
         return None
@@ -1039,17 +1037,35 @@ def get_yandex_top_tracks(artist_id):
         
         # Получаем все альбомы артиста
         albums = artist.get_albums()
+        
+        # Ограничиваем только количество треков
+        max_tracks_per_album = 5
+        total_tracks_limit = 15
+        
         for album in albums:
-            # Получаем треки из каждого альбома
+            if len(all_tracks) >= total_tracks_limit:
+                break
+                
+            # Получаем треки из альбома
             album_tracks = album.with_tracks().volumes
+            track_count = 0
+            
             for volume in album_tracks:
                 for track in volume:
+                    if track_count >= max_tracks_per_album or len(all_tracks) >= total_tracks_limit:
+                        break
+                        
                     all_tracks.append({
                         'name': track.title,
                         'link': f"https://music.yandex.ru/track/{track.id}"
                     })
+                    track_count += 1
+                
+                if track_count >= max_tracks_per_album:
+                    break
         
-        return all_tracks
+        return all_tracks[:total_tracks_limit]  # Гарантируем максимальное количество треков
+        
     except Exception as e:
         logger.error(f"Error in get_yandex_top_tracks: {e}")
         return None
