@@ -1,0 +1,1079 @@
+2025-02-02 02:14:48,630 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=The Weeknd, platform=Spotify
+2025-02-02 02:14:48,658 - database - INFO - Подписка добавлена: user_id=1, artist_name=The Weeknd, platform=Spotify
+2025-02-02 02:22:06,048 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 02:22:29,714 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=21 Savage, platform=Spotify
+2025-02-02 02:22:29,729 - database - INFO - Подписка добавлена: user_id=1, artist_name=21 Savage, platform=Spotify
+2025-02-02 02:22:50,776 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=Toxi$, platform=Yandex Music
+2025-02-02 02:22:50,792 - database - INFO - Подписка добавлена: user_id=1, artist_name=Toxi$, platform=Yandex Music
+2025-02-02 02:23:17,673 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=Bruno Mars, platform=Spotify
+2025-02-02 02:23:17,697 - database - INFO - Подписка добавлена: user_id=1, artist_name=Bruno Mars, platform=Spotify
+2025-02-02 02:23:46,689 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=Future, platform=Spotify
+2025-02-02 02:23:46,721 - database - INFO - Подписка добавлена: user_id=1, artist_name=Future, platform=Spotify
+2025-02-02 14:02:33,878 - __main__ - ERROR - Ошибка при получении информации об артисте из Yandex Music: 'list' object has no attribute 'name'
+2025-02-02 14:10:00,747 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:10:01,085 - __main__ - ERROR - Error fetching Spotify artist info for ID 0Y5tJX1MQlPlqiwlOH1tJY: 403
+2025-02-02 14:15:23,945 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:15:24,264 - __main__ - ERROR - Error fetching Spotify artist info for ID 0Y5tJX1MQlPlqiwlOH1tJY: 403
+2025-02-02 14:15:29,127 - __main__ - INFO - Fetching artist info for artist_id=1Xyo4u8uXC1ZmMpatF05PJ, platform=Spotify
+2025-02-02 14:15:29,416 - __main__ - ERROR - Error fetching Spotify artist info for ID 1Xyo4u8uXC1ZmMpatF05PJ: 403
+2025-02-02 14:15:34,331 - __main__ - INFO - Fetching artist info for artist_id=1URnnhqYAYcrqrcwql10ft, platform=Spotify
+2025-02-02 14:15:34,564 - __main__ - ERROR - Error fetching Spotify artist info for ID 1URnnhqYAYcrqrcwql10ft: 403
+2025-02-02 14:15:35,353 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-02 14:15:35,445 - __main__ - INFO - Artist with ID 8135481 not found on Yandex Music.
+2025-02-02 14:15:36,934 - __main__ - INFO - Fetching artist info for artist_id=0du5cEVh5yTK9QJze8zA0C, platform=Spotify
+2025-02-02 14:15:37,173 - __main__ - ERROR - Error fetching Spotify artist info for ID 0du5cEVh5yTK9QJze8zA0C: 403
+2025-02-02 14:15:37,895 - __main__ - INFO - Fetching artist info for artist_id=1RyvyyTE3xzB2ZywiAwp0i, platform=Spotify
+2025-02-02 14:15:38,126 - __main__ - ERROR - Error fetching Spotify artist info for ID 1RyvyyTE3xzB2ZywiAwp0i: 403
+2025-02-02 14:17:23,617 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:17:23,896 - __main__ - ERROR - Error fetching Spotify artist info for ID 0Y5tJX1MQlPlqiwlOH1tJY: 403
+2025-02-02 14:17:27,982 - __main__ - INFO - Fetching artist info for artist_id=1URnnhqYAYcrqrcwql10ft, platform=Spotify
+2025-02-02 14:17:28,216 - __main__ - ERROR - Error fetching Spotify artist info for ID 1URnnhqYAYcrqrcwql10ft: 403
+2025-02-02 14:17:29,248 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-02 14:17:29,317 - __main__ - INFO - Artist with ID 8135481 not found on Yandex Music.
+2025-02-02 14:17:56,192 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:17:56,448 - __main__ - ERROR - Error fetching Spotify artist info for ID 0Y5tJX1MQlPlqiwlOH1tJY: 403
+2025-02-02 14:26:35,689 - __main__ - INFO - Fetching artist info for artist_id=0du5cEVh5yTK9QJze8zA0C, platform=Spotify
+2025-02-02 14:26:36,039 - __main__ - ERROR - Error fetching Spotify artist info for ID 0du5cEVh5yTK9QJze8zA0C: 403
+2025-02-02 14:26:37,329 - __main__ - INFO - Fetching artist info for artist_id=1RyvyyTE3xzB2ZywiAwp0i, platform=Spotify
+2025-02-02 14:26:37,550 - __main__ - ERROR - Error fetching Spotify artist info for ID 1RyvyyTE3xzB2ZywiAwp0i: 403
+2025-02-02 14:28:58,397 - __main__ - INFO - Fetching artist info for artist_id=0du5cEVh5yTK9QJze8zA0C, platform=Spotify
+2025-02-02 14:28:58,690 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-02 14:29:57,936 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-02 14:29:58,021 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 61, 'day': 65}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 14:30:35,478 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:30:36,134 - __main__ - INFO - Spotify API response: {'external_urls': {'spotify': 'https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY'}, 'followers': {'href': None, 'total': 36630985}, 'genres': ['rap'], 'href': 'https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY', 'id': '0Y5tJX1MQlPlqiwlOH1tJY', 'images': [{'url': 'https://i.scdn.co/image/ab6761610000e5eb19c2790744c792d05570bb71', 'height': 640, 'width': 640}, {'url': 'https://i.scdn.co/image/ab6761610000517419c2790744c792d05570bb71', 'height': 320, 'width': 320}, {'url': 'https://i.scdn.co/image/ab6761610000f17819c2790744c792d05570bb71', 'height': 160, 'width': 160}], 'name': 'Travis Scott', 'popularity': 91, 'type': 'artist', 'uri': 'spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY'}
+2025-02-02 14:30:41,326 - __main__ - INFO - Fetching artist info for artist_id=1Xyo4u8uXC1ZmMpatF05PJ, platform=Spotify
+2025-02-02 14:30:41,846 - __main__ - INFO - Spotify API response: {'external_urls': {'spotify': 'https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ'}, 'followers': {'href': None, 'total': 99152415}, 'genres': [], 'href': 'https://api.spotify.com/v1/artists/1Xyo4u8uXC1ZmMpatF05PJ', 'id': '1Xyo4u8uXC1ZmMpatF05PJ', 'images': [{'url': 'https://i.scdn.co/image/ab6761610000e5eb9e528993a2820267b97f6aae', 'height': 640, 'width': 640}, {'url': 'https://i.scdn.co/image/ab676161000051749e528993a2820267b97f6aae', 'height': 320, 'width': 320}, {'url': 'https://i.scdn.co/image/ab6761610000f1789e528993a2820267b97f6aae', 'height': 160, 'width': 160}], 'name': 'The Weeknd', 'popularity': 94, 'type': 'artist', 'uri': 'spotify:artist:1Xyo4u8uXC1ZmMpatF05PJ'}
+2025-02-02 14:31:51,233 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:31:51,863 - __main__ - INFO - Spotify API response: {'external_urls': {'spotify': 'https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY'}, 'followers': {'href': None, 'total': 36630985}, 'genres': ['rap'], 'href': 'https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY', 'id': '0Y5tJX1MQlPlqiwlOH1tJY', 'images': [{'url': 'https://i.scdn.co/image/ab6761610000e5eb19c2790744c792d05570bb71', 'height': 640, 'width': 640}, {'url': 'https://i.scdn.co/image/ab6761610000517419c2790744c792d05570bb71', 'height': 320, 'width': 320}, {'url': 'https://i.scdn.co/image/ab6761610000f17819c2790744c792d05570bb71', 'height': 160, 'width': 160}], 'name': 'Travis Scott', 'popularity': 91, 'type': 'artist', 'uri': 'spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY'}
+2025-02-02 14:32:21,490 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-02 14:32:21,966 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 61, 'day': 65}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 14:32:23,504 - __main__ - ERROR - Ошибка при получении последнего релиза из Yandex Music: 'list' object has no attribute 'releases'
+2025-02-02 14:33:23,963 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:33:24,974 - __main__ - INFO - Spotify API response: {'external_urls': {'spotify': 'https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY'}, 'followers': {'href': None, 'total': 36630985}, 'genres': ['rap'], 'href': 'https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY', 'id': '0Y5tJX1MQlPlqiwlOH1tJY', 'images': [{'url': 'https://i.scdn.co/image/ab6761610000e5eb19c2790744c792d05570bb71', 'height': 640, 'width': 640}, {'url': 'https://i.scdn.co/image/ab6761610000517419c2790744c792d05570bb71', 'height': 320, 'width': 320}, {'url': 'https://i.scdn.co/image/ab6761610000f17819c2790744c792d05570bb71', 'height': 160, 'width': 160}], 'name': 'Travis Scott', 'popularity': 91, 'type': 'artist', 'uri': 'spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY'}
+2025-02-02 14:36:16,378 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 14:36:27,334 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=Джиган, platform=Yandex Music
+2025-02-02 14:36:27,351 - database - INFO - Подписка добавлена: user_id=1, artist_name=Джиган, platform=Yandex Music
+2025-02-02 14:36:49,763 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 14:36:49,835 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 14:37:24,901 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=Серега Пират, platform=Yandex Music
+2025-02-02 14:37:24,909 - database - INFO - Подписка добавлена: user_id=1, artist_name=Серега Пират, platform=Yandex Music
+2025-02-02 14:37:31,353 - __main__ - INFO - Fetching artist info for artist_id=10880992, platform=Yandex Music
+2025-02-02 14:37:31,444 - __main__ - INFO - Yandex artist data: {'id': '10880992', 'error': None, 'reason': None, 'name': 'Серега Пират', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/9837803/88a01459.p.10880992/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '88a01459.p.10880992/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrock', 'alternative', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/9837803/88a01459.p.10880992/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 30, 'direct_albums': 29, 'also_albums': 1, 'also_tracks': 1}, 'available': True, 'ratings': {'month': 435, 'week': 376, 'day': 349}, 'links': [], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 14:38:04,783 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 14:38:05,078 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-02 18:49:45,672 - __main__ - INFO - Fetching artist info for artist_id=1RyvyyTE3xzB2ZywiAwp0i, platform=Spotify
+2025-02-02 18:49:46,351 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-02 18:49:48,310 - __main__ - INFO - Fetching artist info for artist_id=1Xyo4u8uXC1ZmMpatF05PJ, platform=Spotify
+2025-02-02 18:49:48,563 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-02 18:49:50,224 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 18:49:50,465 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-02 18:49:52,645 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-02 18:49:52,717 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 61, 'day': 65}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 18:49:58,225 - database - INFO - Subscription removed for user 1019214619, artist_id: 8135481, artist_name: None
+2025-02-02 18:51:08,656 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 18:51:08,731 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 18:55:21,630 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:55:28,589 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:55:39,830 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 18:55:39,920 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 18:55:45,590 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:55:48,995 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:55:53,677 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:55:57,016 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:57:09,678 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:57:13,785 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:57:15,689 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:57:18,311 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:57:22,260 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:57:24,749 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:57:25,994 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:57:53,420 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:57:56,559 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:58:17,708 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-02 18:59:00,287 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 18:59:08,152 - __main__ - INFO - Fetching artist info for artist_id=10880992, platform=Yandex Music
+2025-02-02 18:59:08,221 - __main__ - INFO - Yandex artist data: {'id': '10880992', 'error': None, 'reason': None, 'name': 'Серега Пират', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/9837803/88a01459.p.10880992/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '88a01459.p.10880992/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrock', 'alternative', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/9837803/88a01459.p.10880992/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 30, 'direct_albums': 29, 'also_albums': 1, 'also_tracks': 1}, 'available': True, 'ratings': {'month': 435, 'week': 376, 'day': 349}, 'links': [], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 18:59:09,644 - database - INFO - Subscription removed for user 1019214619, artist_id: 10880992, artist_name: None
+2025-02-02 18:59:19,435 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 18:59:19,506 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:00:57,924 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 19:01:03,090 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 19:01:03,177 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:01:06,011 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 19:01:06,086 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:01:09,174 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 19:01:09,246 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:01:45,481 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-02 19:01:45,750 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-02 19:03:21,914 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 19:03:33,590 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 19:03:37,584 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 19:03:37,689 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:03:40,172 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-02 19:03:40,255 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 52, 'day': 39}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:05:22,123 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=Toxi$, platform=Yandex Music
+2025-02-02 19:05:22,141 - database - INFO - Подписка добавлена: user_id=1, artist_name=Toxi$, platform=Yandex Music
+2025-02-02 19:06:35,132 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-02 19:06:42,014 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-02 19:06:42,081 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 61, 'day': 65}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:06:44,725 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-02 19:06:44,829 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 61, 'day': 65}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-02 19:08:32,999 - database - INFO - Subscription removed for user 1019214619, artist_id: 8135481, artist_name: None
+2025-02-03 12:30:56,142 - __main__ - INFO - Пользователь 735673290 запустил бота.
+2025-02-03 22:49:05,474 - __main__ - INFO - Starting bot polling...
+2025-02-03 22:49:09,239 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:09,240 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:13,155 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:13,156 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:13,822 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:13,822 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:13,862 - __main__ - ERROR - Error in handle_menu: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to delete not found
+2025-02-03 22:49:17,485 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:17,487 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:18,171 - __main__ - ERROR - Error in handle_menu: no such column: vip_level
+2025-02-03 22:49:21,429 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:21,430 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:25,840 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:25,847 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:31,503 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:31,504 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:32,497 - __main__ - INFO - Starting bot polling...
+2025-02-03 22:49:37,910 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-03 22:49:39,941 - __main__ - ERROR - Error in handle_menu: no such column: vip_level
+2025-02-03 22:49:39,998 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:39,998 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:49:51,414 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:49:51,415 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:50:11,083 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:50:11,083 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:50:47,320 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:50:47,320 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:51:17,071 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-03 22:51:21,673 - __main__ - INFO - Fetching artist info for artist_id=13ubrt8QOOCPljQ2FL1Kca, platform=Spotify
+2025-02-03 22:51:21,992 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-03 22:51:25,990 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-03 22:51:26,058 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 59, 'week': 51, 'day': 34}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-03 22:51:45,189 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-03 22:51:50,819 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:51:50,820 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:52:29,426 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-03 22:52:29,536 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 62, 'day': 67}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-03 22:52:54,279 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:52:54,281 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:53:57,745 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:53:57,746 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:55:01,209 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:55:01,210 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:55:18,930 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-03 22:55:19,015 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 62, 'day': 67}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-03 22:55:29,772 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-03 22:55:42,637 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-03 22:55:45,830 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-03 22:55:51,903 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-03 22:55:54,381 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-03 22:56:04,690 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:56:04,691 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:56:21,925 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-03 22:56:24,176 - __main__ - ERROR - Error in handle_menu_actions: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message to be replied not found
+2025-02-03 22:57:08,327 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:57:08,328 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:57:31,330 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-03 22:57:42,671 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-03 22:57:42,753 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 62, 'day': 67}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-03 22:57:44,871 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-03 22:57:44,952 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 58, 'week': 62, 'day': 67}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-03 22:58:11,803 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:58:11,803 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 22:59:15,260 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 22:59:15,260 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-03 23:00:18,745 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-03 23:00:18,746 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\aarrm\OneDrive\Рабочий стол\mh\venv\lib\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:51:06,481 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 22:51:12,380 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 22:51:16,389 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:51:16,389 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:51:20,036 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:51:20,037 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:51:23,933 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:51:23,935 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:51:28,331 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:51:28,332 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:51:33,990 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:51:33,991 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:51:49,871 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 22:52:12,340 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 22:52:19,520 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 22:52:19,581 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 22:52:19,887 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:19,888 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:22,936 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:22,937 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:23,203 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:23,204 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:23,525 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:23,526 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:26,513 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:26,514 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:26,834 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:26,836 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:27,070 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:27,071 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:30,400 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:30,402 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:30,629 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:30,630 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:31,463 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:31,464 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:34,694 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:34,695 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:35,522 - TeleBot - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-02-04 22:52:35,523 - TeleBot - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aarrm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telebot\apihelper.py", line 195, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
+2025-02-04 22:52:45,234 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 22:52:59,834 - __main__ - ERROR - Checker error: tuple index out of range
+2025-02-04 23:14:58,101 - __main__ - INFO - Fetching artist info for artist_id=0Y5tJX1MQlPlqiwlOH1tJY, platform=Spotify
+2025-02-04 23:14:58,386 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-04 23:15:01,857 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-04 23:15:01,951 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 58, 'week': 51, 'day': 33}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-04 23:15:04,986 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-04 23:15:05,093 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 58, 'week': 51, 'day': 33}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-04 23:16:20,360 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-04 23:16:20,455 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 58, 'week': 51, 'day': 33}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-04 23:16:32,563 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-04 23:16:32,645 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 58, 'week': 51, 'day': 33}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-04 23:23:02,011 - __main__ - ERROR - Error in handle_menu_actions: no such column: telegram_id
+2025-02-04 23:23:12,358 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-04 23:23:44,107 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-04 23:23:44,125 - database - INFO - User added or already exists: telegram_id=1019214619
+2025-02-04 23:23:46,367 - __main__ - ERROR - Error in handle_menu_actions: no such column: telegram_id
+2025-02-04 23:27:15,475 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-04 23:27:15,483 - database - INFO - User added or already exists: telegram_id=1019214619
+2025-02-04 23:27:18,737 - database - ERROR - Error getting subscriptions for user 1019214619: no such column: telegram_id
+2025-02-04 23:32:56,924 - __main__ - ERROR - Error in handle_menu_actions: Cannot operate on a closed database.
+2025-02-04 23:33:05,960 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-04 23:37:56,766 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-04 23:40:46,247 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-04 23:41:09,940 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-04 23:41:10,032 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 59, 'week': 61, 'day': 68}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-04 23:41:12,801 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-04 23:41:12,883 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 59, 'week': 61, 'day': 68}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-05 00:08:11,512 - __main__ - ERROR - Error in handle_show_main_menu: no such column: balance
+2025-02-05 00:08:17,786 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:09:01,941 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:09:08,646 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-05 00:09:08,748 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 59, 'week': 61, 'day': 68}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-05 00:09:10,994 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-05 00:09:11,062 - __main__ - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 109, 'direct_albums': 38, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 59, 'week': 61, 'day': 68}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-05 00:09:23,802 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:10:54,960 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:10:59,986 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:11:02,865 - __main__ - INFO - Fetching artist info for artist_id=1RyvyyTE3xzB2ZywiAwp0i, platform=Spotify
+2025-02-05 00:11:03,165 - __main__ - ERROR - Spotify API error: 403, { "error" : { "status" : 403, "message" : "Spotify is unavailable in this country" } }
+2025-02-05 00:11:04,522 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-05 00:11:04,609 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 58, 'week': 51, 'day': 33}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-05 00:11:06,307 - __main__ - INFO - Fetching artist info for artist_id=426906, platform=Yandex Music
+2025-02-05 00:11:06,364 - __main__ - INFO - Yandex artist data: {'id': '426906', 'error': None, 'reason': None, 'name': 'Джиган', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': '3bd35cc3.p.426906/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap'], 'og_image': 'avatars.yandex.net/get-music-content/10126140/3bd35cc3.p.426906/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 133, 'direct_albums': 45, 'also_albums': 17, 'also_tracks': 19}, 'available': True, 'ratings': {'month': 58, 'week': 51, 'day': 33}, 'links': [{'title': 'geegunchill', 'href': 'https://t.me/geegunchill', 'type': 'social', 'social_network': 'telegram'}, {'title': 'iamgeegun', 'href': 'https://twitter.com/iamgeegun', 'type': 'social', 'social_network': 'twitter'}, {'title': 'iamgeegun', 'href': 'http://vk.com/iamgeegun', 'type': 'social', 'social_network': 'vk'}, {'title': 'user/OfficialGeegun', 'href': 'http://www.youtube.com/user/OfficialGeegun', 'type': 'social', 'social_network': 'youtube'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
+2025-02-05 00:11:55,339 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:12:03,015 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:13:07,283 - database - INFO - База данных инициализирована
+2025-02-05 00:13:09,683 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:13:13,305 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:13:53,008 - database - INFO - База данных инициализирована
+2025-02-05 00:13:57,406 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:19:05,590 - database - INFO - База данных инициализирована
+2025-02-05 00:19:33,524 - database - INFO - База данных инициализирована
+2025-02-05 00:20:20,363 - database - INFO - База данных инициализирована
+2025-02-05 00:20:29,891 - __main__ - ERROR - Error in handle_payment_action: 'tuple' object has no attribute 'telegram_id'
+2025-02-05 00:20:31,603 - __main__ - ERROR - Error in handle_payment_action: 'tuple' object has no attribute 'telegram_id'
+2025-02-05 00:20:32,426 - __main__ - ERROR - Error in handle_payment_action: 'tuple' object has no attribute 'telegram_id'
+2025-02-05 00:20:34,435 - __main__ - ERROR - Error in handle_payment_action: 'tuple' object has no attribute 'telegram_id'
+2025-02-05 00:20:35,326 - __main__ - ERROR - Error in handle_payment_action: 'tuple' object has no attribute 'telegram_id'
+2025-02-05 00:20:44,385 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:21:06,794 - __main__ - ERROR - Error in handle_payment_action: 'tuple' object has no attribute 'telegram_id'
+2025-02-05 00:21:39,842 - database - INFO - База данных инициализирована
+2025-02-05 00:21:56,382 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-05 00:23:07,485 - database - INFO - База данных инициализирована
+2025-02-05 00:23:18,885 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-11 12:21:36,377 - database - INFO - База данных инициализирована
+2025-02-11 12:21:39,148 - __main__ - INFO - Запуск бота...
+2025-02-11 12:24:24,551 - database - INFO - База данных инициализирована
+2025-02-11 12:24:24,874 - __main__ - INFO - Запуск бота...
+2025-02-11 12:24:53,210 - database - INFO - Subscription removed for user 1019214619, artist_id: 8135481, artist_name: None
+2025-02-11 12:26:41,293 - database - INFO - База данных инициализирована
+2025-02-11 12:26:41,630 - __main__ - INFO - Запуск бота...
+2025-02-11 12:28:41,918 - database - INFO - База данных инициализирована
+2025-02-11 12:28:42,263 - __main__ - INFO - Запуск бота...
+2025-02-11 12:28:53,802 - __main__ - INFO - Пользователь 1019214619 запустил бота.
+2025-02-11 12:29:59,377 - database - INFO - Попытка добавить подписку: telegram_id=1019214619, artist_name=Travis Scott, platform=Yandex Music
+2025-02-11 12:29:59,396 - database - INFO - Подписка добавлена: user_id=1, artist_name=Travis Scott, platform=Yandex Music
