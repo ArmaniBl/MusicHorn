@@ -42,16 +42,32 @@ PAYMENT_INFO = """
 # Инициализация бота
 bot = telebot.TeleBot(TOKEN)
 
-# Очищаем лог файл при запуске
-with open("bot.log", "w") as f:
-    f.write("")
+def clear_all_logs():
+    """Очищает все лог файлы"""
+    log_files = [
+        "bot.log",
+        "database.log",  # если есть
+        "spotify.log",   # если есть
+        "yandex.log"    # если есть
+    ]
+    
+    for log_file in log_files:
+        try:
+            with open(log_file, "w", encoding='utf-8') as f:
+                f.write("")
+            logger.info(f"Cleared log file: {log_file}")
+        except Exception as e:
+            print(f"Error clearing log file {log_file}: {e}")
+
+# Очищаем все логи при запуске
+clear_all_logs()
 
 # Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     filename="bot.log",
-    filemode='w'  # Добавляем режим 'w' для перезаписи файла
+    filemode='w'  # Режим 'w' для перезаписи файла
 )
 logger = logging.getLogger(__name__)
 
