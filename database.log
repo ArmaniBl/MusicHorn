@@ -1,79 +1,37 @@
-2025-02-14 21:32:32,974 - database - INFO - База данных инициализирована
-2025-02-14 21:32:35,247 - __main__ - INFO - Запуск бота...
-2025-02-14 21:33:19,216 - __main__ - ERROR - Spotify token is not valid for user operations
-2025-02-14 21:33:19,216 - __main__ - ERROR - Failed to create Spotify playlist
-2025-02-14 21:34:52,370 - __main__ - ERROR - Ошибка подключения: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-2025-02-14 21:35:02,371 - __main__ - INFO - Запуск бота...
-2025-02-14 21:36:01,860 - __main__ - ERROR - Ошибка подключения: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-2025-02-14 21:36:11,862 - __main__ - INFO - Запуск бота...
-2025-02-14 21:40:35,082 - database - INFO - База данных инициализирована
-2025-02-14 21:40:35,877 - __main__ - INFO - Запуск бота...
-2025-02-14 21:41:08,332 - __main__ - INFO - Created Spotify playlist with ID: 2sux5Bv00SwYPnqBaP3JE1
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 4SZepBIPDRwPaHIjAKwRDb to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 5SkRLpaGtvYPhw02vZhQQ9 to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 2tudvzsrR56uom6smgOcSf to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 57ELn9TPDIhrpl0dasS465 to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 0vjeOZ3Ft5jvAi9SBFJm1j to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 2LNMhZ3YijTO7USmqjgJfG to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 28drn6tQo95MRvO0jQEo5C to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 7LGWmZaoS7jZJ5tEi9EcDi to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 0hL9gOw6XBWsygEUcVjxEc to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 3OHfY25tqY28d16oZczHc8 to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 7EiZI6JVHllARrX9PUvAdX to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 5UwhSyAaU6b5RHeYPzxZld to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 7ycWLEP1GsNjVvcjawXz3z to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 3AWDeHLc88XogCaCnZQLVI to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 28qA8y1sz0FTuSapsCxNOG to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 4IKvw1OdeTJIN3g4zWE38f to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 3I8MbKRkS2IBDuslhCS3iT to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 5SWnsxjhdcEDc7LJjq9UHk to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 1j6kDJttn6wbVyMaM42Nxm to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 787rCZF9i4L1cXGMkdyIk4 to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 47Slg6LuqLaX0VodpSCvPt to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 2Hh3ETdQKrmSI3QS0hme7g to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 2xLMifQCjDGFmkHkpNLD9h to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 2TmS5wJTfWrpFgakSSTdCi to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 0TAUAUIEtq06TdQDVlUSxW to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 2tudvzsrR56uom6smgOcSf to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 35f8hhcaxkrJqP5S9vQfqr to queue
-2025-02-14 21:41:08,332 - __main__ - INFO - Added track 1xYpVRspgaLxdJLOTQkTjg to queue
-2025-02-14 21:41:08,333 - __main__ - INFO - Added track 1PH2MDbcBAU094DlgTIND1 to queue
-2025-02-14 21:41:08,333 - __main__ - INFO - Added track 75rNNskDNJJz45znMDaMnV to queue
-2025-02-14 21:41:08,725 - __main__ - INFO - Added chunk of 30 tracks to playlist
-2025-02-14 21:41:08,725 - __main__ - INFO - Successfully created Spotify playlist
-2025-02-14 21:44:09,646 - database - INFO - База данных инициализирована
-2025-02-14 21:44:10,330 - __main__ - INFO - Запуск бота...
-2025-02-14 21:44:12,543 - __main__ - INFO - Deleted old Spotify mix playlist for user Armani
-2025-02-14 21:44:36,182 - __main__ - INFO - Created Spotify playlist with ID: 0H52hVCsDYTxSaAa4dVCt9
-2025-02-14 21:44:36,182 - __main__ - INFO - Added track 47Slg6LuqLaX0VodpSCvPt to queue
-2025-02-14 21:44:36,182 - __main__ - INFO - Added track 637oNhilCI9UlkWkUW4Grt to queue
-2025-02-14 21:44:36,182 - __main__ - INFO - Added track 4k47x4UkxG215nFLMFna8A to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 1UAmQe8EwpxQ80OfYVD13z to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 3AWDeHLc88XogCaCnZQLVI to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 2BOpFmZQ89Rjm2wvmud1MU to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 2evYKtXNAdn60ANNEdjH7V to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 5673WA8EEUSPx1ir26lhGW to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 7sO5G9EABYOXQKNPNiE9NR to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 52eIcoLUM25zbQupAZYoFh to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 78QR3Wp35dqAhFEc2qAGjE to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 1KucENjrvmAEkSVjAgkGH2 to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 0xaFw2zDYf1rIJWl2dXiSF to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 0VjIjW4GlUZAMYd2vXMi3b to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 3ZaEs1O8BG581qYPHpQ8d6 to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 2h3ZotklPN6aD7OuHz7bFZ to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 6eT2V7nKXyMf47TwPbtgAD to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 76yLBykniz0SSNv0jj17M2 to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 6bRXONmpYZQOk8kj54FaRz to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 1q8DwZtQen5fvyB7cKbShC to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 42VsgItocQwOQC3XWZ8JNA to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 6AI3ezQ4o3HUoP6Dhudph3 to queue
-2025-02-14 21:44:36,183 - __main__ - INFO - Added track 4IO2X2YoXoUMv0M2rwomLC to queue
-2025-02-14 21:44:36,184 - __main__ - INFO - Added track 62zKJrpbLxz6InR3tGyr7o to queue
-2025-02-14 21:44:36,184 - __main__ - INFO - Added track 0nj9Bq5sHDiTxSHunhgkFb to queue
-2025-02-14 21:44:36,184 - __main__ - INFO - Added track 2Uts1QFB4u2YNIMiqcb4de to queue
-2025-02-14 21:44:36,184 - __main__ - INFO - Added track 35f8hhcaxkrJqP5S9vQfqr to queue
-2025-02-14 21:44:36,184 - __main__ - INFO - Added track 0KKkJNfGyhkQ5aFogxQAPU to queue
-2025-02-14 21:44:36,184 - __main__ - INFO - Added track 4bdCRfKEBhVatuxm0fWEIw to queue
-2025-02-14 21:44:36,184 - __main__ - INFO - Added track 75rNNskDNJJz45znMDaMnV to queue
-2025-02-14 21:44:36,559 - __main__ - INFO - Added chunk of 30 tracks to playlist
-2025-02-14 21:44:36,559 - __main__ - INFO - Successfully created Spotify playlist
+2025-02-14 23:07:38,661 - database - INFO - База данных инициализирована
+2025-02-14 23:07:39,560 - __main__ - INFO - Запуск бота...
+2025-02-14 23:07:45,753 - __main__ - INFO - Deleted old Spotify mix playlist for user Armani
+2025-02-14 23:08:18,136 - __main__ - INFO - Created Spotify playlist with ID: 79SGoXLsla1ONzUXf1Rwj9
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0O3TAouZE4vL9dM5SyxgvH to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5SWnsxjhdcEDc7LJjq9UHk to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 28qA8y1sz0FTuSapsCxNOG to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2aGF1a9126wvzwrK01DLff to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3GCdLUSnKSMJhs4Tj6CV3s to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7sjRc6cZ1UFWMrrNGkvkS9 to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3OHfY25tqY28d16oZczHc8 to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 1wVuPmvt6AWvTL5W2GJnzZ to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 70TGNwQDvF5b6GQWlYPr8p to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5Uc07fEUpjjFcLEIleEHkJ to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 6eT2V7nKXyMf47TwPbtgAD to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3L0IKstjUgDFVQAbQIRZRv to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2N3U8uTYhjX2KwGT0pf5x0 to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 637oNhilCI9UlkWkUW4Grt to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5wG3HvLhF6Y5KTGlK0IW3J to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 30raivfq7rSt5nKltiHfzG to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3U3hFkMr0Q90pD24EkE3Pr to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2g6tReTlM2Akp41g0HaeXN to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7skxtd9x0d05fjz4D7w3t2 to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 6jDGDtQPC46pFqxph3qdbD to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0nJW01T7XtvILxQgC5J7Wh to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 52eYVUkFTOVozbVFIaFrnV to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7oPlYYNWDSEQRDb978Bhhc to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2lvchXssas9uKlQiAMNAiP to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0KKkJNfGyhkQ5aFogxQAPU to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 4lH6nENd1y81jp7Yt9lTBX to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 4K09vJ27xCOreumtSuU6Ao to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0xaFw2zDYf1rIJWl2dXiSF to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5UwhSyAaU6b5RHeYPzxZld to queue
+2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7sO5G9EABYOXQKNPNiE9NR to queue
+2025-02-14 23:08:18,419 - __main__ - INFO - Added chunk of 30 tracks to playlist
+2025-02-14 23:08:18,419 - __main__ - INFO - Successfully created Spotify playlist
+2025-02-14 23:08:31,231 - __main__ - ERROR - Connection error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
