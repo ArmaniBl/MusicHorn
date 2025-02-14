@@ -4,6 +4,8 @@ import requests
 import schedule
 import time
 import logging
+import random
+import json
 from database import *
 from dotenv import load_dotenv
 from yandex_music import Client
@@ -17,6 +19,8 @@ load_dotenv()
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
+SPOTIFY_REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
+SPOTIFY_REFRESH_TOKEN = os.getenv("SPOTIFY_REFRESH_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "1019214619"))
 yandex_client = Client(os.getenv("YANDEX_MUSIC_TOKEN")).init()
 
@@ -38,11 +42,16 @@ PAYMENT_INFO = """
 # Инициализация бота
 bot = telebot.TeleBot(TOKEN)
 
+# Очищаем лог файл при запуске
+with open("bot.log", "w") as f:
+    f.write("")
+
 # Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    filename="bot.log"
+    filename="bot.log",
+    filemode='w'  # Добавляем режим 'w' для перезаписи файла
 )
 logger = logging.getLogger(__name__)
 
@@ -236,15 +245,26 @@ def handle_unsubscribe(call):
 
 # Получение токена доступа Spotify
 def get_spotify_token():
-    url = "https://accounts.spotify.com/api/token"
-    headers = {"Content-Type": "application/x-www-form-urlencoded"}
-    data = {
-        "grant_type": "client_credentials",
-        "client_id": SPOTIFY_CLIENT_ID,
-        "client_secret": SPOTIFY_CLIENT_SECRET
-    }
-    response = requests.post(url, headers=headers, data=data)
-    return response.json().get("access_token")
+    try:
+        # Используем refresh token для получения нового access token
+        auth_response = requests.post(
+            'https://accounts.spotify.com/api/token',
+            data={
+                'grant_type': 'refresh_token',
+                'refresh_token': os.getenv('SPOTIFY_REFRESH_TOKEN'),
+                'client_id': SPOTIFY_CLIENT_ID,
+                'client_secret': SPOTIFY_CLIENT_SECRET
+            }
+        )
+        
+        if auth_response.status_code != 200:
+            logger.error(f"Failed to refresh Spotify token: {auth_response.text}")
+            return None
+            
+        return auth_response.json()['access_token']
+    except Exception as e:
+        logger.error(f"Error getting Spotify token: {e}")
+        return None
 
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("last_release:"))
@@ -660,11 +680,12 @@ def show_main_menu(chat_id, message_text="Выберите действие:", r
     
     markup = types.InlineKeyboardMarkup(row_width=1)
     subscriptions_btn = types.InlineKeyboardButton("📋 Подписки", callback_data="menu_subscriptions")
+    mix_btn = types.InlineKeyboardButton("🎵 Создать микс", callback_data="create_mix")
     balance_btn = types.InlineKeyboardButton("💰 Купить слоты", callback_data="menu_balance")
     settings_btn = types.InlineKeyboardButton("⚙️ Настройки", callback_data="menu_settings")
     support_btn = types.InlineKeyboardButton("💝 Поддержать разработчика", callback_data="menu_support")
     
-    markup.add(subscriptions_btn, balance_btn, settings_btn, support_btn)
+    markup.add(subscriptions_btn, mix_btn, balance_btn, settings_btn, support_btn)
     
     return bot.send_message(chat_id, status_text, reply_markup=markup)
 
@@ -923,18 +944,56 @@ def get_spotify_top_tracks(artist_id):
     try:
         token = get_spotify_token()
         headers = {"Authorization": f"Bearer {token}"}
-        response = requests.get(
-            f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks?market=US",
-            headers=headers
+        
+        # Получаем топ треки артиста напрямую
+        top_tracks_response = requests.get(
+            f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks",
+            headers=headers,
+            params={"market": "US"}  # или другой рынок
         )
         
-        if response.status_code == 200:
-            tracks_data = response.json()['tracks'][:10]
-            return [{
+        if top_tracks_response.status_code != 200:
+            return None
+            
+        all_tracks = []
+        tracks = top_tracks_response.json()['tracks']
+        
+        # Добавляем топ треки
+        for track in tracks:
+            all_tracks.append({
                 'name': track['name'],
                 'link': track['external_urls']['spotify']
-            } for track in tracks_data]
-        return None
+            })
+        
+        # Получаем последние релизы (опционально)
+        albums_response = requests.get(
+            f"https://api.spotify.com/v1/artists/{artist_id}/albums",
+            headers=headers,
+            params={
+                "limit": 3,  # Берем только 3 последних альбома
+                "include_groups": "album,single"
+            }
+        )
+        
+        if albums_response.status_code == 200:
+            albums = albums_response.json()['items']
+            
+            # Для каждого альбома получаем несколько треков
+            for album in albums:
+                tracks_response = requests.get(
+                    f"https://api.spotify.com/v1/albums/{album['id']}/tracks",
+                    headers=headers,
+                    params={"limit": 5}  # Берем только 5 треков из каждого альбома
+                )
+                if tracks_response.status_code == 200:
+                    tracks = tracks_response.json()['items']
+                    for track in tracks:
+                        all_tracks.append({
+                            'name': track['name'],
+                            'link': track['external_urls']['spotify']
+                        })
+        
+        return all_tracks
     except Exception as e:
         logger.error(f"Error in get_spotify_top_tracks: {e}")
         return None
@@ -942,11 +1001,21 @@ def get_spotify_top_tracks(artist_id):
 def get_yandex_top_tracks(artist_id):
     try:
         artist = yandex_client.artists(artist_id)[0]
-        tracks = artist.get_tracks()[:10]
-        return [{
-            'name': track.title,
-            'link': f"https://music.yandex.ru/track/{track.id}"
-        } for track in tracks]
+        all_tracks = []
+        
+        # Получаем все альбомы артиста
+        albums = artist.get_albums()
+        for album in albums:
+            # Получаем треки из каждого альбома
+            album_tracks = album.with_tracks().volumes
+            for volume in album_tracks:
+                for track in volume:
+                    all_tracks.append({
+                        'name': track.title,
+                        'link': f"https://music.yandex.ru/track/{track.id}"
+                    })
+        
+        return all_tracks
     except Exception as e:
         logger.error(f"Error in get_yandex_top_tracks: {e}")
         return None
@@ -1009,42 +1078,42 @@ def handle_balance_menu(call):
                 btn_text,
                 callback_data=f"buy_slots:{slots}"
             ))
-        
-        history_btn = types.InlineKeyboardButton(
-            "📋 История платежей",
-            callback_data="payment_history"
-        )
-        back_btn = types.InlineKeyboardButton(
-            "🔙 Назад в меню",
-            callback_data="show_main_menu"
-        )
-        
-        markup.add(history_btn, back_btn)
-        
-        message_text = (
-            f"💫 Уровень: {get_vip_level(call.from_user.id)}\n"
-            f"📝 Доступно слотов: {get_max_subscriptions(call.from_user.id)}\n\n"
-            "Выберите количество слотов для покупки:"
-        )
-        
-        # Пробуем отредактировать сообщение и логируем результат
-        try:
-            bot.edit_message_text(
-                message_text,
-                call.message.chat.id,
-                call.message.message_id,
-                reply_markup=markup
+            
+            history_btn = types.InlineKeyboardButton(
+                "📋 История платежей",
+                callback_data="payment_history"
             )
-            logger.info("Меню баланса успешно отображено")
-            bot.answer_callback_query(call.id)
-        except Exception as edit_error:
-            logger.error(f"Ошибка при редактировании сообщения: {edit_error}")
-            # Если не получилось отредактировать, пробуем отправить новое
-            bot.send_message(
-                call.message.chat.id,
-                message_text,
-                reply_markup=markup
+            back_btn = types.InlineKeyboardButton(
+                "🔙 Назад в меню",
+                callback_data="show_main_menu"
             )
+            
+            markup.add(history_btn, back_btn)
+            
+            message_text = (
+                f"💫 Уровень: {get_vip_level(call.from_user.id)}\n"
+                f"📝 Доступно слотов: {get_max_subscriptions(call.from_user.id)}\n\n"
+                "Выберите количество слотов для покупки:"
+            )
+            
+            # Пробуем отредактировать сообщение и логируем результат
+            try:
+                bot.edit_message_text(
+                    message_text,
+                    call.message.chat.id,
+                    call.message.message_id,
+                    reply_markup=markup
+                )
+                logger.info("Меню баланса успешно отображено")
+                bot.answer_callback_query(call.id)
+            except Exception as edit_error:
+                logger.error(f"Ошибка при редактировании сообщения: {edit_error}")
+                # Если не получилось отредактировать, пробуем отправить новое
+                bot.send_message(
+                    call.message.chat.id,
+                    message_text,
+                    reply_markup=markup
+                )
             
     except Exception as e:
         logger.error(f"Error in handle_balance_menu: {e}")
@@ -1228,6 +1297,413 @@ def handle_payment_action(call):
     except Exception as e:
         logger.error(f"Error in handle_payment_action: {e}")
         bot.answer_callback_query(call.id, "Произошла ошибка при обработке платежа")
+
+@bot.callback_query_handler(func=lambda call: call.data == "create_mix")
+def handle_create_mix(call):
+    try:
+        # Получаем подписки пользователя
+        subscriptions = get_subscriptions(call.from_user.id)
+        
+        if not subscriptions:
+            bot.answer_callback_query(call.id)
+            bot.edit_message_text(
+                "❌ У вас нет подписок на исполнителей.\n"
+                "Добавьте исполнителей для создания микса!",
+                call.message.chat.id,
+                call.message.message_id,
+                reply_markup=get_back_to_menu_markup()
+            )
+            return
+
+        # Создаем клавиатуру для выбора платформы
+        markup = types.InlineKeyboardMarkup(row_width=1)
+        spotify_btn = types.InlineKeyboardButton("Spotify микс 🎵", callback_data="mix_platform:Spotify")
+        yandex_btn = types.InlineKeyboardButton("Яндекс.Музыка микс 🎵", callback_data="mix_platform:Yandex Music")
+        back_btn = types.InlineKeyboardButton("🔙 Назад", callback_data="show_main_menu")
+        markup.add(spotify_btn, yandex_btn, back_btn)
+
+        bot.edit_message_text(
+            "Выберите платформу для создания микса:",
+            call.message.chat.id,
+            call.message.message_id,
+            reply_markup=markup
+        )
+
+    except Exception as e:
+        logger.error(f"Error in handle_create_mix: {e}")
+        bot.answer_callback_query(call.id, "Произошла ошибка при создании микса")
+        bot.edit_message_text(
+            "❌ Произошла ошибка при создании микса.",
+            call.message.chat.id,
+            call.message.message_id,
+            reply_markup=get_back_to_menu_markup()
+        )
+
+def create_yandex_playlist(tracks, title="Случайный микс"):
+    try:
+        # Создаем новый плейлист
+        user_id = yandex_client.me.account.uid
+        playlist = yandex_client.users_playlists_create(
+            title=title,
+            visibility="public",
+            user_id=user_id
+        )
+        logger.info(f"Created playlist with kind={playlist.kind}")
+        
+        # Получаем информацию о треках
+        tracks_info = []
+        for track in tracks:
+            if 'link' in track:
+                try:
+                    track_id = int(track['link'].split('/')[-1])
+                    track_info = yandex_client.tracks([track_id])[0]
+                    if track_info and track_info.albums:
+                        tracks_info.append({
+                            'track_id': track_id,
+                            'album_id': track_info.albums[0].id
+                        })
+                        logger.info(f"Added track {track_id} to queue")
+                except Exception as e:
+                    logger.error(f"Error processing track {track['link']}: {e}")
+                    continue
+        
+        if not tracks_info:
+            logger.error("No valid tracks found")
+            return None
+        
+        try:
+            # Создаем список изменений для всех треков
+            tracks_to_add = []
+            for track in tracks_info:
+                tracks_to_add.append({
+                    'op': 'insert',
+                    'at': 0,
+                    'tracks': [track]
+                })
+
+            # Формируем запрос
+            url = f"https://api.music.yandex.net/users/{user_id}/playlists/{playlist.kind}/change"
+            headers = {
+                "Authorization": f"OAuth {yandex_client.token}",
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+            
+            # Формируем данные в правильном формате
+            diff_data = [{
+                'op': 'insert',
+                'at': 0,
+                'tracks': tracks_to_add
+            }]
+            
+            # Создаем форму данных
+            form_data = {
+                'diff': json.dumps(diff_data),
+                'revision': playlist.revision
+            }
+            
+            logger.info(f"Sending request with form data: {form_data}")
+            response = requests.post(url, headers=headers, data=form_data)
+            logger.info(f"API Response: {response.text}")
+            
+            if response.status_code == 200:
+                logger.info("Successfully added all tracks to playlist")
+                return f"https://music.yandex.ru/users/{user_id}/playlists/{playlist.kind}"
+            else:
+                logger.error(f"Failed to add tracks: {response.text}")
+                try:
+                    yandex_client.users_playlists_delete(kind=playlist.kind)
+                except:
+                    pass
+                return None
+            
+        except Exception as e:
+            logger.error(f"Error modifying playlist: {e}")
+            try:
+                yandex_client.users_playlists_delete(kind=playlist.kind)
+            except Exception as del_e:
+                logger.error(f"Error deleting failed playlist: {del_e}")
+            return None
+            
+    except Exception as e:
+        logger.error(f"Error creating Yandex Music playlist: {e}")
+        return None
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith("mix_platform:"))
+def handle_mix_platform(call):
+    try:
+        platform = call.data.split(":")[1]
+        subscriptions = get_subscriptions(call.from_user.id)
+        
+        # Получаем имя пользователя
+        user_name = call.from_user.first_name
+        
+        # Удаляем старый микс перед созданием нового
+        if platform == "Yandex Music":
+            delete_old_mix(call.from_user.id, user_name)
+        elif platform == "Spotify":
+            token = get_spotify_token()
+            if token:
+                delete_old_spotify_mix(token, user_name)
+        
+        # Фильтруем подписки по выбранной платформе
+        platform_subscriptions = [sub for sub in subscriptions if sub[2] == platform]
+        
+        if not platform_subscriptions:
+            bot.answer_callback_query(call.id)
+            bot.edit_message_text(
+                f"❌ У вас нет подписок на исполнителей в {platform}.\n"
+                "Добавьте исполнителей для создания микса!",
+                call.message.chat.id,
+                call.message.message_id,
+                reply_markup=get_back_to_menu_markup()
+            )
+            return
+            
+        # Создаем сообщение о подготовке микса
+        bot.edit_message_text(
+            f"🎵 Создаю микс из случайных треков ваших любимых исполнителей в {platform}...\n"
+            "Это может занять некоторое время, так как я просматриваю все альбомы...",
+            call.message.chat.id,
+            call.message.message_id
+        )
+        
+        # Собираем треки от всех исполнителей выбранной платформы
+        all_tracks = []
+        for artist_id, artist_name, _ in platform_subscriptions:
+            tracks = None
+            if platform == "Spotify":
+                tracks = get_spotify_top_tracks(artist_id)
+            elif platform == "Yandex Music":
+                tracks = get_yandex_top_tracks(artist_id)
+            
+            if tracks:
+                # Добавляем имя исполнителя к каждому треку
+                for track in tracks:
+                    track['artist'] = artist_name
+                    all_tracks.append(track)
+        
+        if not all_tracks:
+            bot.edit_message_text(
+                "❌ Не удалось получить треки для микса.",
+                call.message.chat.id,
+                call.message.message_id,
+                reply_markup=get_back_to_menu_markup()
+            )
+            return
+        
+        # Перемешиваем все треки и выбираем случайные 30 вместо 15
+        random.shuffle(all_tracks)
+        selected_tracks = all_tracks[:30]  # Изменено с 15 на 30
+        
+        # Создаем плейлист
+        playlist_link = None
+        if platform == "Yandex Music":
+            try:
+                playlist_link = create_yandex_playlist(
+                    selected_tracks,
+                    f"Микс для {user_name}"
+                )
+                if not playlist_link:
+                    logger.error("Failed to create Yandex Music playlist")
+            except Exception as e:
+                logger.error(f"Error in Yandex Music playlist creation: {e}")
+        elif platform == "Spotify":
+            try:
+                playlist_link = create_spotify_playlist(selected_tracks, user_name)
+                if not playlist_link:
+                    logger.error("Failed to create Spotify playlist")
+            except Exception as e:
+                logger.error(f"Error in Spotify playlist creation: {e}")
+        
+        # Формируем сообщение с миксом
+        message_text = f"🎵 Ваш случайный микс в {platform}:\n\n"
+        for i, track in enumerate(selected_tracks, 1):
+            message_text += f"{i}. {track['artist']} - {track['name']}\n"
+            if track.get('link'):
+                message_text += f"🔗 {track['link']}\n"
+            message_text += "\n"
+            
+        if playlist_link:
+            message_text += f"\n🎵 Плейлист в {'Яндекс.Музыке' if platform == 'Yandex Music' else 'Spotify'}:\n{playlist_link}"
+        
+        # Добавляем кнопку для создания нового случайного микса
+        markup = types.InlineKeyboardMarkup(row_width=1)
+        new_mix_btn = types.InlineKeyboardButton(
+            "🔄 Создать новый случайный микс",
+            callback_data=f"mix_platform:{platform}"
+        )
+        back_btn = types.InlineKeyboardButton(
+            "🔙 В главное меню",
+            callback_data="show_main_menu"
+        )
+        markup.add(new_mix_btn, back_btn)
+        
+        # Отправляем результат
+        bot.edit_message_text(
+            message_text,
+            call.message.chat.id,
+            call.message.message_id,
+            reply_markup=markup
+        )
+        
+    except Exception as e:
+        logger.error(f"Error in handle_mix_platform: {e}", exc_info=True)
+        bot.answer_callback_query(call.id, "Произошла ошибка при создании микса")
+        bot.edit_message_text(
+            "❌ Произошла ошибка при создании микса.",
+            call.message.chat.id,
+            call.message.message_id,
+            reply_markup=get_back_to_menu_markup()
+        )
+
+def get_back_to_menu_markup():
+    """Вспомогательная функция для создания кнопки возврата в меню"""
+    markup = types.InlineKeyboardMarkup()
+    back_btn = types.InlineKeyboardButton("🔙 В главное меню", callback_data="show_main_menu")
+    markup.add(back_btn)
+    return markup
+
+# Добавим новую функцию для получения и удаления старого плейлиста
+def delete_old_mix(user_id, username):
+    try:
+        # Получаем все плейлисты пользователя
+        playlists = yandex_client.users_playlists_list()
+        
+        # Ищем плейлист с названием "Микс для {username}"
+        for playlist in playlists:
+            if playlist.title == f"Микс для {username}":
+                try:
+                    yandex_client.users_playlists_delete(kind=playlist.kind)
+                    logger.info(f"Deleted old mix playlist for user {username}")
+                except Exception as e:
+                    logger.error(f"Error deleting old playlist: {e}")
+                break
+    except Exception as e:
+        logger.error(f"Error finding old playlist: {e}")
+
+def create_spotify_playlist(tracks, user_name):
+    try:
+        token = get_spotify_token()
+        if not token:
+            logger.error("Failed to get Spotify token")
+            return None
+            
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+        
+        # Получаем ID пользователя Spotify
+        user_response = requests.get(
+            "https://api.spotify.com/v1/me",
+            headers=headers
+        )
+        
+        if user_response.status_code == 401:
+            logger.error("Spotify token is not valid for user operations")
+            return None
+            
+        if user_response.status_code != 200:
+            logger.error(f"Failed to get Spotify user info: {user_response.text}")
+            return None
+            
+        user_id = user_response.json()['id']
+        
+        # Создаем новый плейлист
+        playlist_data = {
+            "name": f"Микс для {user_name}",
+            "description": "Создано ботом MusicHorn",
+            "public": True
+        }
+        
+        playlist_response = requests.post(
+            f"https://api.spotify.com/v1/users/{user_id}/playlists",
+            headers=headers,
+            json=playlist_data
+        )
+        
+        if playlist_response.status_code != 201:
+            logger.error(f"Failed to create Spotify playlist: {playlist_response.text}")
+            return None
+            
+        playlist_id = playlist_response.json()['id']
+        logger.info(f"Created Spotify playlist with ID: {playlist_id}")
+        
+        # Добавляем треки в плейлист
+        track_uris = []
+        for track in tracks:
+            if 'link' in track:
+                # Извлекаем ID трека из ссылки
+                track_id = track['link'].split('/')[-1]
+                track_uris.append(f"spotify:track:{track_id}")
+                logger.info(f"Added track {track_id} to queue")
+        
+        # Добавляем треки порциями по 100 (ограничение API)
+        for i in range(0, len(track_uris), 100):
+            chunk = track_uris[i:i + 100]
+            add_tracks_response = requests.post(
+                f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks",
+                headers=headers,
+                json={"uris": chunk}
+            )
+            
+            if add_tracks_response.status_code != 201:
+                logger.error(f"Failed to add tracks to Spotify playlist: {add_tracks_response.text}")
+                return None
+            
+            logger.info(f"Added chunk of {len(chunk)} tracks to playlist")
+        
+        logger.info("Successfully created Spotify playlist")
+        return f"https://open.spotify.com/playlist/{playlist_id}"
+        
+    except Exception as e:
+        logger.error(f"Error creating Spotify playlist: {e}")
+        return None
+
+def delete_old_spotify_mix(token, user_name):
+    try:
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+        
+        # Получаем ID пользователя
+        user_response = requests.get(
+            "https://api.spotify.com/v1/me",
+            headers=headers
+        )
+        if user_response.status_code != 200:
+            logger.error(f"Failed to get Spotify user info: {user_response.text}")
+            return
+            
+        user_id = user_response.json()['id']
+        
+        # Получаем плейлисты пользователя
+        playlists_response = requests.get(
+            f"https://api.spotify.com/v1/users/{user_id}/playlists",
+            headers=headers
+        )
+        
+        if playlists_response.status_code != 200:
+            logger.error(f"Failed to get Spotify playlists: {playlists_response.text}")
+            return
+            
+        # Ищем плейлист с нужным названием
+        for playlist in playlists_response.json()['items']:
+            if playlist['name'] == f"Микс для {user_name}":
+                # Удаляем найденный плейлист
+                delete_response = requests.delete(
+                    f"https://api.spotify.com/v1/playlists/{playlist['id']}/followers",
+                    headers=headers
+                )
+                if delete_response.status_code == 200:
+                    logger.info(f"Deleted old Spotify mix playlist for user {user_name}")
+                else:
+                    logger.error(f"Failed to delete Spotify playlist: {delete_response.text}")
+                break
+                
+    except Exception as e:
+        logger.error(f"Error deleting old Spotify playlist: {e}")
 
 # Изменим структуру запуска бота в конце файла
 if __name__ == "__main__":
