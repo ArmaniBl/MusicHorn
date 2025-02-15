@@ -1,37 +1,4 @@
-2025-02-14 23:07:38,661 - database - INFO - База данных инициализирована
-2025-02-14 23:07:39,560 - __main__ - INFO - Запуск бота...
-2025-02-14 23:07:45,753 - __main__ - INFO - Deleted old Spotify mix playlist for user Armani
-2025-02-14 23:08:18,136 - __main__ - INFO - Created Spotify playlist with ID: 79SGoXLsla1ONzUXf1Rwj9
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0O3TAouZE4vL9dM5SyxgvH to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5SWnsxjhdcEDc7LJjq9UHk to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 28qA8y1sz0FTuSapsCxNOG to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2aGF1a9126wvzwrK01DLff to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3GCdLUSnKSMJhs4Tj6CV3s to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7sjRc6cZ1UFWMrrNGkvkS9 to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3OHfY25tqY28d16oZczHc8 to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 1wVuPmvt6AWvTL5W2GJnzZ to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 70TGNwQDvF5b6GQWlYPr8p to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5Uc07fEUpjjFcLEIleEHkJ to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 6eT2V7nKXyMf47TwPbtgAD to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3L0IKstjUgDFVQAbQIRZRv to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2N3U8uTYhjX2KwGT0pf5x0 to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 637oNhilCI9UlkWkUW4Grt to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5wG3HvLhF6Y5KTGlK0IW3J to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 30raivfq7rSt5nKltiHfzG to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 3U3hFkMr0Q90pD24EkE3Pr to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2g6tReTlM2Akp41g0HaeXN to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7skxtd9x0d05fjz4D7w3t2 to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 6jDGDtQPC46pFqxph3qdbD to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0nJW01T7XtvILxQgC5J7Wh to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 52eYVUkFTOVozbVFIaFrnV to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7oPlYYNWDSEQRDb978Bhhc to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 2lvchXssas9uKlQiAMNAiP to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0KKkJNfGyhkQ5aFogxQAPU to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 4lH6nENd1y81jp7Yt9lTBX to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 4K09vJ27xCOreumtSuU6Ao to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 0xaFw2zDYf1rIJWl2dXiSF to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 5UwhSyAaU6b5RHeYPzxZld to queue
-2025-02-14 23:08:18,137 - __main__ - INFO - Added track 7sO5G9EABYOXQKNPNiE9NR to queue
-2025-02-14 23:08:18,419 - __main__ - INFO - Added chunk of 30 tracks to playlist
-2025-02-14 23:08:18,419 - __main__ - INFO - Successfully created Spotify playlist
-2025-02-14 23:08:31,231 - __main__ - ERROR - Connection error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-02-15 14:22:36,677 - database - INFO - База данных инициализирована
+2025-02-15 14:22:37,618 - __main__ - INFO - Запуск бота...
+2025-02-15 14:22:40,366 - __main__ - INFO - Fetching artist info for artist_id=8135481, platform=Yandex Music
+2025-02-15 14:22:40,793 - yandex_func - INFO - Yandex artist data: {'id': '8135481', 'error': None, 'reason': None, 'name': 'Toxi$', 'cover': {'type': 'from-artist-photos', 'uri': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'items_uri': None, 'dir': None, 'version': None, 'custom': None, 'is_custom': None, 'copyright_name': None, 'copyright_cline': None, 'prefix': 'e6d501ae.p.8135481/', 'error': None}, 'various': False, 'composer': False, 'genres': ['rusrap', 'rap', 'ruspop'], 'og_image': 'avatars.yandex.net/get-music-content/13911897/e6d501ae.p.8135481/%%', 'op_image': None, 'no_pictures_from_search': None, 'counts': {'tracks': 110, 'direct_albums': 39, 'also_albums': 20, 'also_tracks': 21}, 'available': True, 'ratings': {'month': 59, 'week': 62, 'day': 43}, 'links': [{'title': '@toxis_slimey', 'href': 'https://www.tiktok.com/@toxis_slimey', 'type': 'social', 'social_network': 'tiktok'}, {'title': 'channel/UC-jckzBzBPAMDmwMrQNmlbw', 'href': 'http://www.youtube.com/channel/UC-jckzBzBPAMDmwMrQNmlbw', 'type': 'social', 'social_network': 'youtube'}, {'title': 'toxis1', 'href': 'https://vk.com/toxis1', 'type': 'social', 'social_network': 'vk'}, {'title': 'toxisslime4', 'href': 'https://t.me/toxisslime4', 'type': 'social', 'social_network': 'telegram'}], 'tickets_available': False, 'likes_count': None, 'popular_tracks': [], 'regions': None, 'decomposed': None, 'full_names': None, 'hand_made_description': None, 'description': None, 'countries': None, 'en_wikipedia_link': None, 'db_aliases': None, 'aliases': None, 'init_date': None, 'end_date': None, 'ya_money_id': None}
