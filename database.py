@@ -52,6 +52,18 @@ def init_db():
         )
     """)
     
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS releases_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            artist_id TEXT,
+            platform TEXT,
+            release_id TEXT,
+            release_type TEXT,
+            release_date TEXT,
+            UNIQUE(artist_id, platform, release_id)
+        )
+    """)
+    
     conn.commit()
     logger.info("База данных инициализирована")
 
@@ -224,6 +236,19 @@ def has_subscription(telegram_id, artist_id):
     """, (telegram_id, artist_id))
     count = cursor.fetchone()[0]
     return count > 0
+
+def add_release_to_history(artist_id, platform, release_id, release_type, release_date):
+    try:
+        cursor.execute("""
+            INSERT OR IGNORE INTO releases_history 
+            (artist_id, platform, release_id, release_type, release_date)
+            VALUES (?, ?, ?, ?, ?)
+        """, (artist_id, platform, release_id, release_type, release_date))
+        conn.commit()
+        return cursor.rowcount > 0  # True если релиз новый
+    except Exception as e:
+        logger.error(f"Error adding release to history: {e}")
+        return False
 
 # Инициализация базы данных при импорте
 init_db()
