@@ -473,54 +473,64 @@ def unmute_notifications(message):
 # Функция для проверки новых релизов
 def check_new_releases():
     conn, cursor = get_db()
-    #Получаем всех пользователей и их подписки
+    # Получаем всех пользователей и их подписки
     cursor.execute("SELECT telegram_id FROM users WHERE muted = FALSE")
     users = cursor.fetchall()
+    
     for user in users:
         telegram_id = user[0]
         subscriptions = get_subscriptions(telegram_id)
-        for sub in subscriptions:
-            artist_id = sub[1]  # artist_id
-            platform = sub[3]  # platform
-            if platform == "Spotify":
-                new_releases = get_new_releases(artist_id)
-            else:
+        
+        for artist_id, artist_name, platform in subscriptions:
+            try:
+                if platform == "Spotify":
+                    album, single = get_spotify_last_releases(artist_id)
+                    
+                    if album and add_release_to_history(artist_id, platform, album['id'], 'album', album['release_date']):
+                        message = (
+                            f"🎵 Новый альбом от {artist_name}!\n"
+                            f"Название: {album['name']}\n"
+                            f"Дата выхода: {album['release_date']}\n"
+                            f"Ссылка: {album['link']}"
+                        )
+                        bot.send_message(telegram_id, message)
+                        
+                    if single and add_release_to_history(artist_id, platform, single['id'], 'single', single['release_date']):
+                        message = (
+                            f"🎵 Новый сингл от {artist_name}!\n"
+                            f"Название: {single['name']}\n"
+                            f"Дата выхода: {single['release_date']}\n"
+                            f"Ссылка: {single['link']}"
+                        )
+                        bot.send_message(telegram_id, message)
+                        
+                elif platform == "Yandex Music":
+                    album, single = get_yandex_last_releases(artist_id)
+                    
+                    if album and add_release_to_history(artist_id, platform, str(album['id']), 'album', album['release_date']):
+                        message = (
+                            f"🎵 Новый альбом от {artist_name} в Яндекс.Музыке!\n"
+                            f"Название: {album['name']}\n"
+                            f"Дата выхода: {album['release_date']}\n"
+                            f"Ссылка: {album['link']}"
+                        )
+                        bot.send_message(telegram_id, message)
+                        
+                    if single and add_release_to_history(artist_id, platform, str(single['id']), 'single', single['release_date']):
+                        message = (
+                            f"🎵 Новый сингл от {artist_name} в Яндекс.Музыке!\n"
+                            f"Название: {single['name']}\n"
+                            f"Дата выхода: {single['release_date']}\n"
+                            f"Ссылка: {single['link']}"
+                        )
+                        bot.send_message(telegram_id, message)
+                        
+            except Exception as e:
+                logger.error(f"Error checking releases for {artist_name}: {e}")
                 continue
 
-            if new_releases:
-                for release in new_releases:
-                    if platform == "Spotify":
-                        release_date = release.get("release_date", "дата неизвестна")
-                        total_tracks = release.get("total_tracks", "?")
-                        message = (
-                            f"🎵 Новый релиз от {sub[2]} на Spotify!\n"
-                            f"Название: {release['name']}\n"
-                            f"Дата выхода: {release_date}\n"
-                            f"Треков: {total_tracks}\n"
-                            f"Ссылка: {release['external_urls']['spotify']}"
-                        )
-                        if release.get("images"):
-                            image_url = release["images"][0]["url"]
-                            bot.send_photo(telegram_id, image_url, caption=message)
-                        else:
-                            bot.send_message(telegram_id, message)
-
-@bot.message_handler(commands=["help"])
-def show_help(message):
-    help_text = """
-    🎵 Доступные команды:
-    /start - Начать работу с ботом.
-    /track [имя артиста] - Подписаться на артиста.
-    /untrack [имя артиста] - Отписаться от артиста.
-    /my_artists - Показать список подписок.
-    /mute - Отключить уведомления.
-    /unmute - Включить уведомления.
-    /help - Показать это сообщение.
-    """
-    bot.reply_to(message, help_text)
-
-# Запуск периодической проверки
-schedule.every(1).hours.do(check_new_releases)  # Проверка каждые 1 час
+# Запускаем проверку каждый час
+schedule.every(1).hours.do(check_new_releases)
 
 def show_main_menu(chat_id, message_text="Выберите действие:", reply_to_message_id=None):
     try:
