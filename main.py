@@ -484,49 +484,84 @@ def check_new_releases():
         for artist_id, artist_name, platform in subscriptions:
             try:
                 if platform == "Spotify":
-                    album, single = get_spotify_last_releases(artist_id)
+                    # Add retry logic for Spotify token refresh
+                    max_retries = 3
+                    retry_count = 0
+                    while retry_count < max_retries:
+                        try:
+                            album, single = get_spotify_last_releases(artist_id)
+                            break
+                        except Exception as spotify_error:
+                            retry_count += 1
+                            logger.warning(f"Spotify error (attempt {retry_count}/{max_retries}): {spotify_error}")
+                            if retry_count == max_retries:
+                                logger.error(f"Failed to get Spotify releases after {max_retries} attempts")
+                                continue
+                            time.sleep(5)  # Wait before retrying
                     
-                    if album and add_release_to_history(artist_id, platform, album['id'], 'album', album['release_date']):
-                        message = (
-                            f"🎵 Новый альбом от {artist_name}!\n"
-                            f"Название: {album['name']}\n"
-                            f"Дата выхода: {album['release_date']}\n"
-                            f"Ссылка: {album['link']}"
-                        )
-                        bot.send_message(telegram_id, message)
-                        
-                    if single and add_release_to_history(artist_id, platform, single['id'], 'single', single['release_date']):
-                        message = (
-                            f"🎵 Новый сингл от {artist_name}!\n"
-                            f"Название: {single['name']}\n"
-                            f"Дата выхода: {single['release_date']}\n"
-                            f"Ссылка: {single['link']}"
-                        )
-                        bot.send_message(telegram_id, message)
+                    # Process album if we got one
+                    if album and isinstance(album, dict) and 'id' in album:
+                        if add_release_to_history(artist_id, platform, album['id'], 'album', album['release_date']):
+                            message = (
+                                f"🎵 Новый альбом от {artist_name}!\n"
+                                f"Название: {album['name']}\n"
+                                f"Дата выхода: {album['release_date']}\n"
+                                f"Ссылка: {album['link']}"
+                            )
+                            try:
+                                bot.send_message(telegram_id, message)
+                            except Exception as send_error:
+                                logger.error(f"Failed to send album notification: {send_error}")
+                    
+                    # Process single if we got one
+                    if single and isinstance(single, dict) and 'id' in single:
+                        if add_release_to_history(artist_id, platform, single['id'], 'single', single['release_date']):
+                            message = (
+                                f"🎵 Новый сингл от {artist_name}!\n"
+                                f"Название: {single['name']}\n"
+                                f"Дата выхода: {single['release_date']}\n"
+                                f"Ссылка: {single['link']}"
+                            )
+                            try:
+                                bot.send_message(telegram_id, message)
+                            except Exception as send_error:
+                                logger.error(f"Failed to send single notification: {send_error}")
                         
                 elif platform == "Yandex Music":
-                    album, single = get_yandex_last_releases(artist_id)
-                    
-                    if album and add_release_to_history(artist_id, platform, str(album['id']), 'album', album['release_date']):
-                        message = (
-                            f"🎵 Новый альбом от {artist_name} в Яндекс.Музыке!\n"
-                            f"Название: {album['name']}\n"
-                            f"Дата выхода: {album['release_date']}\n"
-                            f"Ссылка: {album['link']}"
-                        )
-                        bot.send_message(telegram_id, message)
+                    try:
+                        album, single = get_yandex_last_releases(artist_id)
                         
-                    if single and add_release_to_history(artist_id, platform, str(single['id']), 'single', single['release_date']):
-                        message = (
-                            f"🎵 Новый сингл от {artist_name} в Яндекс.Музыке!\n"
-                            f"Название: {single['name']}\n"
-                            f"Дата выхода: {single['release_date']}\n"
-                            f"Ссылка: {single['link']}"
-                        )
-                        bot.send_message(telegram_id, message)
+                        if album and isinstance(album, dict) and 'id' in album:
+                            if add_release_to_history(artist_id, platform, str(album['id']), 'album', album['release_date']):
+                                message = (
+                                    f"🎵 Новый альбом от {artist_name} в Яндекс.Музыке!\n"
+                                    f"Название: {album['name']}\n"
+                                    f"Дата выхода: {album['release_date']}\n"
+                                    f"Ссылка: {album['link']}"
+                                )
+                                try:
+                                    bot.send_message(telegram_id, message)
+                                except Exception as send_error:
+                                    logger.error(f"Failed to send Yandex album notification: {send_error}")
+                        
+                        if single and isinstance(single, dict) and 'id' in single:
+                            if add_release_to_history(artist_id, platform, str(single['id']), 'single', single['release_date']):
+                                message = (
+                                    f"🎵 Новый сингл от {artist_name} в Яндекс.Музыке!\n"
+                                    f"Название: {single['name']}\n"
+                                    f"Дата выхода: {single['release_date']}\n"
+                                    f"Ссылка: {single['link']}"
+                                )
+                                try:
+                                    bot.send_message(telegram_id, message)
+                                except Exception as send_error:
+                                    logger.error(f"Failed to send Yandex single notification: {send_error}")
+                    except Exception as yandex_error:
+                        logger.error(f"Error getting Yandex Music releases: {yandex_error}")
+                        continue
                         
             except Exception as e:
-                logger.error(f"Error checking releases for {artist_name}: {e}")
+                logger.error(f"Error checking releases for {artist_name}: {e}", exc_info=True)
                 continue
 
 # Запускаем проверку каждый час
@@ -574,9 +609,13 @@ def show_main_menu(chat_id, message_text="Выберите действие:", r
 @bot.callback_query_handler(func=lambda call: call.data.startswith("menu_"))
 def handle_menu(call):
     try:
-        # Удаляем предыдущее сообщение
-        bot.delete_message(call.message.chat.id, call.message.message_id)
-
+        # Try to delete the message, but handle potential errors
+        try:
+            bot.delete_message(call.message.chat.id, call.message.message_id)
+        except Exception as delete_error:
+            logger.warning(f"Could not delete message: {delete_error}")
+            # Continue with the handler even if deletion fails
+        
         if call.data == "menu_subscriptions":
             markup = types.InlineKeyboardMarkup(row_width=1)
             view_btn = types.InlineKeyboardButton("👀 Посмотреть подписки", callback_data="view_subscriptions")
@@ -656,16 +695,39 @@ def handle_menu(call):
     except Exception as e:
         logger.error(f"Error in handle_menu: {e}")
         bot.answer_callback_query(call.id, "Произошла ошибка")
+        # Try to send an error message to the user
+        try:
+            bot.send_message(
+                call.message.chat.id, 
+                "Произошла ошибка. Пожалуйста, попробуйте снова.",
+                reply_markup=get_back_to_menu_markup()
+            )
+        except Exception as send_error:
+            logger.error(f"Could not send error message: {send_error}")
 
 @bot.callback_query_handler(func=lambda call: call.data == "show_main_menu")
 def handle_show_main_menu(call):
     try:
+        # Try to delete the previous message, but handle potential errors
+        try:
+            bot.delete_message(call.message.chat.id, call.message.message_id)
+        except Exception as delete_error:
+            logger.warning(f"Could not delete message: {delete_error}")
+            # Continue even if deletion fails
+            
         show_main_menu(call.message.chat.id)
-        # Удаляем предыдущее сообщение
-        bot.delete_message(call.message.chat.id, call.message.message_id)
+        
     except Exception as e:
         logger.error(f"Error in handle_show_main_menu: {e}")
         bot.answer_callback_query(call.id, "Произошла ошибка")
+        try:
+            bot.send_message(
+                call.message.chat.id,
+                "Произошла ошибка. Пожалуйста, попробуйте снова.",
+                reply_markup=get_back_to_menu_markup()
+            )
+        except Exception as send_error:
+            logger.error(f"Could not send error message: {send_error}")
 
 
 
@@ -1432,39 +1494,91 @@ if __name__ == "__main__":
     import threading
     
     def run_bot():
+        consecutive_errors = 0
+        max_consecutive_errors = 5
+        base_wait_time = 5
+        
         while True:
             try:
                 logger.info("Запуск бота...")
                 bot.polling(none_stop=True, timeout=60, long_polling_timeout=30)
-            except requests.exceptions.Timeout as e:
-                logger.error(f"Timeout error: {e}")
-                time.sleep(15)
+                # If we get here, polling was stopped normally
+                consecutive_errors = 0
+                
+            except requests.exceptions.ProxyError as e:
+                consecutive_errors += 1
+                wait_time = min(base_wait_time * consecutive_errors, 300)  # Max 5 minutes
+                logger.error(f"Proxy connection error (attempt {consecutive_errors}): {e}")
+                logger.info(f"Waiting {wait_time} seconds before retry...")
+                time.sleep(wait_time)
+                
             except requests.exceptions.ConnectionError as e:
-                logger.error(f"Connection error: {e}")
-                time.sleep(15)
+                consecutive_errors += 1
+                wait_time = min(base_wait_time * consecutive_errors, 300)
+                logger.error(f"Connection error (attempt {consecutive_errors}): {e}")
+                logger.info(f"Waiting {wait_time} seconds before retry...")
+                time.sleep(wait_time)
+                
             except telebot.apihelper.ApiTelegramException as e:
                 if "Too Many Requests" in str(e):
-                    logger.error("Rate limit exceeded, waiting...")
-                    time.sleep(60)
+                    # Get retry_after from error message if available
+                    retry_after = 60
+                    if hasattr(e, 'result') and isinstance(e.result, dict):
+                        retry_after = e.result.get('parameters', {}).get('retry_after', 60)
+                    logger.error(f"Rate limit exceeded, waiting {retry_after} seconds...")
+                    time.sleep(retry_after)
                 else:
+                    consecutive_errors += 1
+                    wait_time = min(base_wait_time * consecutive_errors, 300)
                     logger.error(f"Telegram API error: {e}")
-                    time.sleep(10)
+                    time.sleep(wait_time)
+                    
             except Exception as e:
-                logger.error(f"Unexpected error: {e}")
-                time.sleep(10)
+                consecutive_errors += 1
+                wait_time = min(base_wait_time * consecutive_errors, 300)
+                logger.error(f"Unexpected error: {e}", exc_info=True)
+                time.sleep(wait_time)
+            
+            # Check if we've had too many consecutive errors
+            if consecutive_errors >= max_consecutive_errors:
+                logger.critical(f"Too many consecutive errors ({consecutive_errors}). Restarting bot...")
+                consecutive_errors = 0
+                time.sleep(60)  # Wait a minute before restarting
     
     def run_scheduler():
+        consecutive_errors = 0
         while True:
             try:
                 schedule.run_pending()
+                consecutive_errors = 0
             except Exception as e:
-                logger.error(f"Scheduler error: {e}")
+                consecutive_errors += 1
+                wait_time = min(5 * consecutive_errors, 300)
+                logger.error(f"Scheduler error (attempt {consecutive_errors}): {e}")
+                if consecutive_errors >= 5:
+                    logger.critical("Too many scheduler errors. Restarting scheduler...")
+                    consecutive_errors = 0
+                time.sleep(wait_time)
+            time.sleep(1)
+    
+    # Set up the threads with proper error handling
+    def start_thread(target, name):
+        while True:
+            try:
+                thread = threading.Thread(target=target, name=name, daemon=True)
+                thread.start()
+                thread.join()
+            except Exception as e:
+                logger.error(f"Thread {name} crashed: {e}", exc_info=True)
+                time.sleep(10)
+    
+    # Start both threads
+    threading.Thread(target=start_thread, args=(run_bot, "bot"), daemon=True).start()
+    threading.Thread(target=start_thread, args=(run_scheduler, "scheduler"), daemon=True).start()
+    
+    # Keep the main thread alive
+    try:
+        while True:
             time.sleep(60)
-    
-    schedule.every(1).hours.do(check_new_releases)
-    
-    bot_thread = threading.Thread(target=run_bot)
-    scheduler_thread = threading.Thread(target=run_scheduler)
-    
-    bot_thread.start()
-    scheduler_thread.start()
+    except KeyboardInterrupt:
+        logger.info("Bot stopping...")
