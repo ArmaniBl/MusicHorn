@@ -18,77 +18,142 @@ conn = sqlite3.connect("database.db", check_same_thread=False)
 cursor = conn.cursor()
 
 # Создание таблиц
+def migrate_db():
+    try:
+        # Создаем временную таблицу с новой структурой
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS users_new (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                chat_id INTEGER UNIQUE,
+                muted BOOLEAN DEFAULT FALSE,
+                vip_level INTEGER DEFAULT 0
+            )
+        """)
+        
+        # Копируем данные из старой таблицы в новую, переименовывая telegram_id в chat_id
+        cursor.execute("""
+            INSERT INTO users_new (id, chat_id, muted, vip_level)
+            SELECT id, telegram_id, muted, vip_level FROM users
+        """)
+        
+        # Удаляем старую таблицу
+        cursor.execute("DROP TABLE users")
+        
+        # Переименовываем новую таблицу
+        cursor.execute("ALTER TABLE users_new RENAME TO users")
+        
+        conn.commit()
+        logger.info("База данных успешно обновлена")
+        
+    except Exception as e:
+        logger.error(f"Ошибка при миграции базы данных: {e}")
+        conn.rollback()
+        raise
+
 def init_db():
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            telegram_id INTEGER UNIQUE,
-            muted BOOLEAN DEFAULT FALSE,
-            vip_level INTEGER DEFAULT 0
-        )
-    """)
-    
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS payment_requests (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            amount INTEGER,
-            slots INTEGER,
-            status TEXT DEFAULT 'pending',
-            payment_info TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        )
-    """)
-    
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS subscriptions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            artist_id TEXT,
-            artist_name TEXT,
-            platform TEXT,
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        )
-    """)
-    
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS releases_history (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            artist_id TEXT,
-            platform TEXT,
-            release_id TEXT,
-            release_type TEXT,
-            release_date TEXT,
-            UNIQUE(artist_id, platform, release_id)
-        )
-    """)
-    
-    conn.commit()
-    logger.info("База данных инициализирована")
+    try:
+        # Проверяем существование старой структуры
+        cursor.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='users'")
+        table_info = cursor.fetchone()
+        
+        if table_info:
+            # Проверяем наличие столбца chat_id
+            cursor.execute("PRAGMA table_info(users)")
+            columns = cursor.fetchall()
+            has_chat_id = any(column[1] == 'chat_id' for column in columns)
+            
+            if not has_chat_id:
+                logger.info("Обнаружена старая структура базы данных, выполняем миграцию...")
+                migrate_db()
+        else:
+            # Создаем таблицы с новой структурой
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    chat_id INTEGER UNIQUE,
+                    muted BOOLEAN DEFAULT FALSE,
+                    vip_level INTEGER DEFAULT 0
+                )
+            """)
+            
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS payment_requests (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER,
+                    amount INTEGER,
+                    slots INTEGER,
+                    status TEXT DEFAULT 'pending',
+                    payment_info TEXT,
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users(id)
+                )
+            """)
+            
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS subscriptions (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER,
+                    artist_id TEXT,
+                    artist_name TEXT,
+                    platform TEXT,
+                    FOREIGN KEY (user_id) REFERENCES users(id)
+                )
+            """)
+            
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS releases_history (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    artist_id TEXT,
+                    platform TEXT,
+                    release_id TEXT,
+                    release_type TEXT,
+                    release_date TEXT,
+                    UNIQUE(artist_id, platform, release_id)
+                )
+            """)
+        
+        conn.commit()
+        logger.info("База данных инициализирована")
+        
+    except Exception as e:
+        logger.error(f"Ошибка при инициализации базы данных: {e}")
+        raise
 
 # Добавление пользователя
-def add_user(telegram_id):
-    cursor.execute(
-        "INSERT OR IGNORE INTO users (telegram_id, muted, vip_level) VALUES (?, FALSE, 0)",
-        (telegram_id,)
-    )
-    conn.commit()
+def add_user(chat_id):
+    try:
+        cursor.execute(
+            "INSERT OR IGNORE INTO users (chat_id, muted, vip_level) VALUES (?, FALSE, 0)",
+            (chat_id,)
+        )
+        conn.commit()
+        logger.info(f"Added or updated user with chat_id: {chat_id}")
+    except Exception as e:
+        logger.error(f"Error in add_user: {e}")
 
-def get_user_id(telegram_id):
-    cursor.execute("SELECT id FROM users WHERE telegram_id = ?", (telegram_id,))
-    result = cursor.fetchone()
-    return result[0] if result else None
+def get_user_id(chat_id):
+    try:
+        cursor.execute("SELECT id FROM users WHERE chat_id = ?", (chat_id,))
+        result = cursor.fetchone()
+        if not result:
+            # Если пользователь не найден, добавляем его
+            add_user(chat_id)
+            cursor.execute("SELECT id FROM users WHERE chat_id = ?", (chat_id,))
+            result = cursor.fetchone()
+        return result[0] if result else None
+    except Exception as e:
+        logger.error(f"Error in get_user_id: {e}")
+        return None
 
 # Добавление подписки
-def add_subscription(telegram_id, artist_id, artist_name, platform):
-    logger.info(f"Попытка добавить подписку: telegram_id={telegram_id}, artist_name={artist_name}, platform={platform}")
-    cursor.execute("SELECT id FROM users WHERE telegram_id = ?", (telegram_id,))
+def add_subscription(chat_id, artist_id, artist_name, platform):
+    logger.info(f"Попытка добавить подписку: chat_id={chat_id}, artist_name={artist_name}, platform={platform}")
+    cursor.execute("SELECT id FROM users WHERE chat_id = ?", (chat_id,))
     user = cursor.fetchone()
     if not user:
-        logger.info(f"Пользователь {telegram_id} не найден, добавляем...")
-        add_user(telegram_id)
-        cursor.execute("SELECT id FROM users WHERE telegram_id = ?", (telegram_id,))
+        logger.info(f"Пользователь {chat_id} не найден, добавляем...")
+        add_user(chat_id)
+        cursor.execute("SELECT id FROM users WHERE chat_id = ?", (chat_id,))
         user = cursor.fetchone()
 
     user_id = user[0]
@@ -98,76 +163,113 @@ def add_subscription(telegram_id, artist_id, artist_name, platform):
     logger.info(f"Подписка добавлена: user_id={user_id}, artist_name={artist_name}, platform={platform}")
 
 # Получение подписок пользователя
-def get_subscriptions(telegram_id):
+def get_subscriptions(chat_id):
     cursor.execute("""
         SELECT subscriptions.artist_id, subscriptions.artist_name, subscriptions.platform
         FROM subscriptions
         JOIN users ON subscriptions.user_id = users.id
-        WHERE users.telegram_id = ?
-    """, (telegram_id,))
+        WHERE users.chat_id = ?
+    """, (chat_id,))
     return cursor.fetchall()
 
 def get_db():
     return conn, cursor
 
-def remove_subscription(telegram_id, artist_id=None, artist_name=None):
+def remove_subscription(chat_id, artist_id=None, artist_name=None):
     try:
+        logger.info(f"Starting subscription removal for chat_id={chat_id}, artist_id={artist_id}, artist_name={artist_name}")
+        
+        # Проверяем существование пользователя
+        cursor.execute("SELECT id FROM users WHERE chat_id = ?", (chat_id,))
+        user_result = cursor.fetchone()
+        
+        if not user_result:
+            logger.warning(f"User not found for chat_id: {chat_id}")
+            # Попробуем создать пользователя
+            add_user(chat_id)
+            cursor.execute("SELECT id FROM users WHERE chat_id = ?", (chat_id,))
+            user_result = cursor.fetchone()
+            if not user_result:
+                logger.error("Failed to create user")
+                return
+        
+        user_id = user_result[0]
+        logger.info(f"Found user_id={user_id} for chat_id={chat_id}")
+        
+        # Проверяем существование подписки перед удалением
         if artist_id:
             cursor.execute("""
-                DELETE FROM subscriptions
-                WHERE user_id = (SELECT id FROM users WHERE telegram_id = ?)
-                AND artist_id = ?
-            """, (telegram_id, artist_id))
-        elif artist_name:
+                SELECT COUNT(*) FROM subscriptions 
+                WHERE user_id = ? AND artist_id = ?
+            """, (user_id, artist_id))
+            count = cursor.fetchone()[0]
+            logger.info(f"Found {count} subscriptions for user_id={user_id} and artist_id={artist_id}")
+            
             cursor.execute("""
                 DELETE FROM subscriptions
-                WHERE user_id = (SELECT id FROM users WHERE telegram_id = ?)
-                AND artist_name LIKE ?
-            """, (telegram_id, artist_name))
+                WHERE user_id = ? AND artist_id = ?
+            """, (user_id, artist_id))
+        elif artist_name:
+            cursor.execute("""
+                SELECT COUNT(*) FROM subscriptions 
+                WHERE user_id = ? AND artist_name LIKE ?
+            """, (user_id, artist_name))
+            count = cursor.fetchone()[0]
+            logger.info(f"Found {count} subscriptions for user_id={user_id} and artist_name={artist_name}")
+            
+            cursor.execute("""
+                DELETE FROM subscriptions
+                WHERE user_id = ? AND artist_name LIKE ?
+            """, (user_id, artist_name))
+        
+        rows_affected = cursor.rowcount
         conn.commit()
-        logger.info(f"Subscription removed for user {telegram_id}, artist_id: {artist_id}, artist_name: {artist_name}")
+        logger.info(f"Removed {rows_affected} subscriptions for user_id={user_id}, chat_id={chat_id}")
+        
     except Exception as e:
-        logger.error(f"Error removing subscription: {e}")
+        logger.error(f"Error removing subscription: {e}", exc_info=True)
+        conn.rollback()
+        raise
 
-def mute_user(telegram_id):
-    cursor.execute("UPDATE users SET muted = TRUE WHERE telegram_id = ?", (telegram_id,))
+def mute_user(chat_id):
+    cursor.execute("UPDATE users SET muted = TRUE WHERE chat_id = ?", (chat_id,))
     conn.commit()
 
-def unmute_user(telegram_id):
-    cursor.execute("UPDATE users SET muted = FALSE WHERE telegram_id = ?", (telegram_id,))
+def unmute_user(chat_id):
+    cursor.execute("UPDATE users SET muted = FALSE WHERE chat_id = ?", (chat_id,))
     conn.commit()
 
-def is_muted(telegram_id):
-    cursor.execute("SELECT muted FROM users WHERE telegram_id = ?", (telegram_id,))
+def is_muted(chat_id):
+    cursor.execute("SELECT muted FROM users WHERE chat_id = ?", (chat_id,))
     result = cursor.fetchone()
     return result[0] if result else False
 
-def get_vip_level(telegram_id):
+def get_vip_level(chat_id):
     cursor.execute(
-        "SELECT vip_level FROM users WHERE telegram_id = ?",
-        (telegram_id,)
+        "SELECT vip_level FROM users WHERE chat_id = ?",
+        (chat_id,)
     )
     result = cursor.fetchone()
     return result[0] if result else 0
 
-def get_max_subscriptions(telegram_id):
-    vip_level = get_vip_level(telegram_id)
+def get_max_subscriptions(chat_id):
+    vip_level = get_vip_level(chat_id)
     return 5 + vip_level
 
-def can_add_subscription(telegram_id):
-    current_subs = len(get_subscriptions(telegram_id))
-    max_subs = get_max_subscriptions(telegram_id)
+def can_add_subscription(chat_id):
+    current_subs = len(get_subscriptions(chat_id))
+    max_subs = get_max_subscriptions(chat_id)
     return current_subs < max_subs
 
-def set_vip_level(telegram_id, level):
+def set_vip_level(chat_id, level):
     cursor.execute(
-        "UPDATE users SET vip_level = ? WHERE telegram_id = ?",
-        (level, telegram_id)
+        "UPDATE users SET vip_level = ? WHERE chat_id = ?",
+        (level, chat_id)
     )
     conn.commit()
 
-def get_transaction_history(telegram_id):
-    user_id = get_user_id(telegram_id)
+def get_transaction_history(chat_id):
+    user_id = get_user_id(chat_id)
     cursor.execute("""
         SELECT amount, status, timestamp 
         FROM transactions 
@@ -177,8 +279,8 @@ def get_transaction_history(telegram_id):
     """, (user_id,))
     return cursor.fetchall()
 
-def create_payment_request(telegram_id, slots, amount):
-    user_id = get_user_id(telegram_id)
+def create_payment_request(chat_id, slots, amount):
+    user_id = get_user_id(chat_id)
     cursor.execute(
         "INSERT INTO payment_requests (user_id, slots, amount, status) VALUES (?, ?, ?, 'pending')",
         (user_id, slots, amount)
@@ -197,7 +299,7 @@ def get_pending_payments():
     cursor.execute("""
         SELECT 
             payment_requests.id,
-            users.telegram_id,
+            users.chat_id,
             payment_requests.slots, 
             payment_requests.amount,
             payment_requests.timestamp,
@@ -208,8 +310,8 @@ def get_pending_payments():
     """)
     return cursor.fetchall()
 
-def get_payment_history(telegram_id):
-    user_id = get_user_id(telegram_id)
+def get_payment_history(chat_id):
+    user_id = get_user_id(chat_id)
     cursor.execute("""
         SELECT amount, slots, status, timestamp 
         FROM payment_requests 
@@ -221,21 +323,27 @@ def get_payment_history(telegram_id):
 
 def get_payment_by_id(payment_id):
     cursor.execute("""
-        SELECT payment_requests.*, users.telegram_id
+        SELECT payment_requests.*, users.chat_id
         FROM payment_requests 
         JOIN users ON payment_requests.user_id = users.id
         WHERE payment_requests.id = ?
     """, (payment_id,))
     return cursor.fetchone()
 
-def has_subscription(telegram_id, artist_id):
-    cursor.execute("""
-        SELECT COUNT(*) FROM subscriptions
-        JOIN users ON subscriptions.user_id = users.id
-        WHERE users.telegram_id = ? AND subscriptions.artist_id = ?
-    """, (telegram_id, artist_id))
-    count = cursor.fetchone()[0]
-    return count > 0
+def has_subscription(chat_id, artist_id):
+    try:
+        logger.info(f"Checking subscription for chat_id={chat_id}, artist_id={artist_id}")
+        cursor.execute("""
+            SELECT COUNT(*) FROM subscriptions
+            JOIN users ON subscriptions.user_id = users.id
+            WHERE users.chat_id = ? AND subscriptions.artist_id = ?
+        """, (chat_id, artist_id))
+        count = cursor.fetchone()[0]
+        logger.info(f"Found {count} subscriptions")
+        return count > 0
+    except Exception as e:
+        logger.error(f"Error checking subscription: {e}", exc_info=True)
+        return False
 
 def add_release_to_history(artist_id, platform, release_id, release_type, release_date):
     try:
