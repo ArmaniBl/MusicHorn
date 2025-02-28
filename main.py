@@ -6,6 +6,7 @@ import time
 import logging
 import random
 import json
+import threading
 from database import *
 from dotenv import load_dotenv
 from telebot import types
@@ -70,16 +71,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Настройка сессии requests с повторными попытками
-session = requests.Session()
-retry_strategy = Retry(
-    total=3,
-    backoff_factor=1,
-    status_forcelist=[429, 500, 502, 503, 504],
-)
-adapter = HTTPAdapter(max_retries=retry_strategy)
-session.mount("https://", adapter)
-session.mount("http://", adapter)
+# Настройка сессии requests с повторными попытками и возможностью работы без прокси
+def create_session():
+    session = requests.Session()
+    retry_strategy = Retry(
+        total=5,  # Увеличиваем количество попыток
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
 
 # Настройка таймаутов для бота
 bot.timeout = 30  # Увеличиваем таймаут до 30 секунд
@@ -87,9 +90,9 @@ bot.timeout = 30  # Увеличиваем таймаут до 30 секунд
 # Пример использования логов
 @bot.message_handler(commands=["start"])
 def start(message):
-    logger.info(f"Пользователь {message.from_user.id} запустил бота.")
-    add_user(message.from_user.id)
-    welcome_text = f"👋 Привет, {message.from_user.first_name}! Я MusicHorn. Я помогу отслеживать новые релизы твоих любимых исполнителей."
+    logger.info(f"Чат {message.chat.id} запустил бота.")
+    add_user(message.chat.id)
+    welcome_text = f"👋 Привет! Я MusicHorn. Я помогу отслеживать новые релизы твоих любимых исполнителей."
     show_main_menu(message.chat.id, welcome_text)
 
 
@@ -215,21 +218,27 @@ def check_spotify_token():
 @bot.callback_query_handler(func=lambda call: call.data.startswith("unsubscribe:"))
 def handle_unsubscribe(call):
     try:
+        logger.info(f"Handling unsubscribe callback: {call.data}")
         # Разбираем callback_data
         _, artist_id, platform = call.data.split(":")
-
+        chat_id = call.message.chat.id
+        
+        logger.info(f"Attempting to unsubscribe: chat_id={chat_id}, artist_id={artist_id}, platform={platform}")
+        
         # Удаляем подписку по artist_id
-        remove_subscription(call.from_user.id, artist_id=artist_id)
-
+        remove_subscription(chat_id, artist_id=artist_id)
+        
         # Отправляем уведомление и удаляем сообщение
         bot.answer_callback_query(call.id, f"❌ Ты больше не следишь за этим артистом на {platform}.")
         bot.delete_message(call.message.chat.id, call.message.message_id)
-
+        
         # Показываем главное меню
         show_main_menu(call.message.chat.id, "Выберите действие:")
+        
+        logger.info(f"Successfully unsubscribed: chat_id={chat_id}, artist_id={artist_id}")
 
     except Exception as e:
-        logger.error(f"Error in handle_unsubscribe: {e}")
+        logger.error(f"Error in handle_unsubscribe: {e}", exc_info=True)
         bot.answer_callback_query(call.id, "Произошла ошибка при отписке.")
 
 
@@ -305,8 +314,9 @@ def track_artist(message):
     # Создаем inline-кнопки для выбора платформы
     markup = types.InlineKeyboardMarkup(row_width=2)
     spotify_btn = types.InlineKeyboardButton("Spotify", callback_data=f"choose_platform:Spotify:{artist_name}")
+    yandex_btn = types.InlineKeyboardButton("Яндекс.Музыка", callback_data=f"choose_platform:Yandex Music:{artist_name}")
     back_btn = types.InlineKeyboardButton("🔙 Назад", callback_data="menu_subscriptions")
-    markup.add(spotify_btn, back_btn)
+    markup.add(spotify_btn, yandex_btn, back_btn)
     
     bot.reply_to(
         message, 
@@ -318,10 +328,11 @@ def track_artist(message):
 def handle_platform_choice(call):
     try:
         _, platform, artist_name = call.data.split(":", 2)
+        chat_id = call.message.chat.id  # Используем chat_id вместо from_user.id
         
-        if not can_add_subscription(call.from_user.id):
-            vip_level = get_vip_level(call.from_user.id)
-            max_subs = get_max_subscriptions(call.from_user.id)
+        if not can_add_subscription(chat_id):
+            vip_level = get_vip_level(chat_id)
+            max_subs = get_max_subscriptions(chat_id)
             markup = types.InlineKeyboardMarkup()
             markup.add(types.InlineKeyboardButton("🔙 Назад", callback_data="menu_subscriptions"))
             bot.answer_callback_query(call.id)
@@ -359,6 +370,28 @@ def handle_platform_choice(call):
                     reply_markup=markup
                 )
                 return
+        elif platform == "Yandex Music":
+            artists = search_yandex_artist(artist_name)
+            if artists:
+                for artist in artists:
+                    # Get the number of tracks as a proxy for popularity since Yandex doesn't provide follower count
+                    tracks_count = len(artist.get_tracks()) if artist.get_tracks() else 0
+                    button_text = f"{artist.name} ({tracks_count} треков)"
+                    markup.add(types.InlineKeyboardButton(
+                        button_text,
+                        callback_data=f"select_artist:Yandex Music:{artist.id}:{artist.name}"
+                    ))
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton("🔙 Назад", callback_data="menu_subscriptions"))
+                bot.answer_callback_query(call.id)
+                bot.edit_message_text(
+                    f"❌ Артист {artist_name} не найден на Яндекс.Музыке.",
+                    call.message.chat.id,
+                    call.message.message_id,
+                    reply_markup=markup
+                )
+                return
 
         markup.add(types.InlineKeyboardButton("🔙 Назад", callback_data="menu_subscriptions"))
         
@@ -378,8 +411,9 @@ def handle_platform_choice(call):
 def handle_artist_selection(call):
     try:
         _, platform, artist_id, artist_name = call.data.split(":", 3)
+        chat_id = call.message.chat.id  # Используем chat_id вместо from_user.id
         
-        if has_subscription(call.from_user.id, artist_id):
+        if has_subscription(chat_id, artist_id):
             markup = types.InlineKeyboardMarkup()
             markup.add(types.InlineKeyboardButton("🔙 Назад", callback_data="menu_subscriptions"))
             bot.answer_callback_query(call.id)
@@ -391,7 +425,7 @@ def handle_artist_selection(call):
             )
             return
             
-        add_subscription(call.from_user.id, artist_id, artist_name, platform=platform)
+        add_subscription(chat_id, artist_id, artist_name, platform=platform)
         
         # Формируем ссылку на артиста
         if platform == "Spotify":
@@ -406,7 +440,7 @@ def handle_artist_selection(call):
         bot.edit_message_text(
             f"🎤 Теперь ты следишь за {artist_name} на {platform}!\n"
             f"Ссылка: {artist_url}\n\n"
-            f"Подписок: {len(get_subscriptions(call.from_user.id))}/{get_max_subscriptions(call.from_user.id)}",
+            f"Подписок: {len(get_subscriptions(chat_id))}/{get_max_subscriptions(chat_id)}",
             call.message.chat.id,
             call.message.message_id,
             reply_markup=markup
@@ -827,8 +861,9 @@ def handle_artist_name_input(message):
     # Создаем inline-кнопки для выбора платформы
     markup = types.InlineKeyboardMarkup(row_width=2)
     spotify_btn = types.InlineKeyboardButton("Spotify", callback_data=f"choose_platform:Spotify:{artist_name}")
+    yandex_btn = types.InlineKeyboardButton("Яндекс.Музыка", callback_data=f"choose_platform:Yandex Music:{artist_name}")
     back_btn = types.InlineKeyboardButton("🔙 Назад", callback_data="menu_subscriptions")
-    markup.add(spotify_btn, back_btn)
+    markup.add(spotify_btn, yandex_btn, back_btn)
     
     bot.reply_to(
         message, 
@@ -1164,16 +1199,29 @@ def handle_payment_action(call):
 @bot.callback_query_handler(func=lambda call: call.data == "create_mix")
 def handle_create_mix(call):
     try:
-        # Получаем подписки пользователя
-        subscriptions = get_subscriptions(call.from_user.id)
+        # Сначала пробуем ответить на callback query
+        try:
+            bot.answer_callback_query(call.id)
+        except telebot.apihelper.ApiTelegramException as e:
+            if "query is too old" in str(e):
+                logger.warning("Callback query устарел")
+            else:
+                logger.error(f"Ошибка при ответе на callback query: {e}")
+                
+        # Получаем подписки чата
+        subscriptions = get_subscriptions(call.message.chat.id)
         
         if not subscriptions:
-            bot.answer_callback_query(call.id)
-            bot.edit_message_text(
+            # Отправляем новое сообщение вместо редактирования
+            try:
+                bot.delete_message(call.message.chat.id, call.message.message_id)
+            except:
+                pass
+                
+            bot.send_message(
+                call.message.chat.id,
                 "❌ У вас нет подписок на исполнителей.\n"
                 "Добавьте исполнителей для создания микса!",
-                call.message.chat.id,
-                call.message.message_id,
                 reply_markup=get_back_to_menu_markup()
             )
             return
@@ -1185,22 +1233,39 @@ def handle_create_mix(call):
         back_btn = types.InlineKeyboardButton("🔙 Назад", callback_data="show_main_menu")
         markup.add(spotify_btn, yandex_btn, back_btn)
 
-        bot.edit_message_text(
-            "Выберите платформу для создания микса:",
-            call.message.chat.id,
-            call.message.message_id,
-            reply_markup=markup
-        )
+        # Пробуем отредактировать сообщение, если не получается - отправляем новое
+        try:
+            bot.edit_message_text(
+                "Выберите платформу для создания микса:",
+                call.message.chat.id,
+                call.message.message_id,
+                reply_markup=markup
+            )
+        except telebot.apihelper.ApiTelegramException as e:
+            if "message to edit not found" in str(e) or "message can't be edited" in str(e):
+                try:
+                    bot.delete_message(call.message.chat.id, call.message.message_id)
+                except:
+                    pass
+                    
+                bot.send_message(
+                    call.message.chat.id,
+                    "Выберите платформу для создания микса:",
+                    reply_markup=markup
+                )
+            else:
+                raise
 
     except Exception as e:
-        logger.error(f"Error in handle_create_mix: {e}")
-        bot.answer_callback_query(call.id, "Произошла ошибка при создании микса")
-        bot.edit_message_text(
-            "❌ Произошла ошибка при создании микса.",
-            call.message.chat.id,
-            call.message.message_id,
-            reply_markup=get_back_to_menu_markup()
-        )
+        logger.error(f"Ошибка в handle_create_mix: {e}", exc_info=True)
+        try:
+            bot.send_message(
+                call.message.chat.id,
+                "❌ Произошла ошибка при создании микса. Попробуйте еще раз.",
+                reply_markup=get_back_to_menu_markup()
+            )
+        except Exception as send_error:
+            logger.error(f"Не удалось отправить сообщение об ошибке: {send_error}")
 
 def create_yandex_playlist(tracks, title="Случайный микс"):
     try:
@@ -1487,98 +1552,68 @@ def delete_old_mix(user_id, username):
 
 
 
+
 # Изменим структуру запуска бота в конце файла
 if __name__ == "__main__":
     print("Бот запущен!")
     
-    import threading
-    
     def run_bot():
-        consecutive_errors = 0
-        max_consecutive_errors = 5
-        base_wait_time = 5
-        
         while True:
             try:
                 logger.info("Запуск бота...")
-                bot.polling(none_stop=True, timeout=60, long_polling_timeout=30)
-                # If we get here, polling was stopped normally
-                consecutive_errors = 0
+                # Создаем новую сессию для бота
+                telebot.apihelper.SESSION = create_session()
+                # Удаляем webhook перед запуском polling
+                bot.remove_webhook()
+                # Добавляем небольшую задержку
+                time.sleep(0.1)
+                # Запускаем бота с настройками против конфликтов
+                bot.polling(none_stop=True, timeout=60, long_polling_timeout=30, interval=1)
                 
-            except requests.exceptions.ProxyError as e:
-                consecutive_errors += 1
-                wait_time = min(base_wait_time * consecutive_errors, 300)  # Max 5 minutes
-                logger.error(f"Proxy connection error (attempt {consecutive_errors}): {e}")
-                logger.info(f"Waiting {wait_time} seconds before retry...")
-                time.sleep(wait_time)
-                
-            except requests.exceptions.ConnectionError as e:
-                consecutive_errors += 1
-                wait_time = min(base_wait_time * consecutive_errors, 300)
-                logger.error(f"Connection error (attempt {consecutive_errors}): {e}")
-                logger.info(f"Waiting {wait_time} seconds before retry...")
-                time.sleep(wait_time)
+            except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as e:
+                logger.error(f"Ошибка соединения: {e}")
+                time.sleep(15)
                 
             except telebot.apihelper.ApiTelegramException as e:
-                if "Too Many Requests" in str(e):
-                    # Get retry_after from error message if available
-                    retry_after = 60
-                    if hasattr(e, 'result') and isinstance(e.result, dict):
-                        retry_after = e.result.get('parameters', {}).get('retry_after', 60)
-                    logger.error(f"Rate limit exceeded, waiting {retry_after} seconds...")
-                    time.sleep(retry_after)
+                if "Conflict with another bot instance" in str(e) or "terminated by other getUpdates request" in str(e):
+                    logger.error("Обнаружен конфликт с другим экземпляром бота. Перезапуск...")
+                    time.sleep(5)
                 else:
-                    consecutive_errors += 1
-                    wait_time = min(base_wait_time * consecutive_errors, 300)
                     logger.error(f"Telegram API error: {e}")
-                    time.sleep(wait_time)
-                    
+                    time.sleep(10)
+                
             except Exception as e:
-                consecutive_errors += 1
-                wait_time = min(base_wait_time * consecutive_errors, 300)
-                logger.error(f"Unexpected error: {e}", exc_info=True)
-                time.sleep(wait_time)
-            
-            # Check if we've had too many consecutive errors
-            if consecutive_errors >= max_consecutive_errors:
-                logger.critical(f"Too many consecutive errors ({consecutive_errors}). Restarting bot...")
-                consecutive_errors = 0
-                time.sleep(60)  # Wait a minute before restarting
+                logger.error(f"Неожиданная ошибка: {e}", exc_info=True)
+                time.sleep(10)
     
     def run_scheduler():
-        consecutive_errors = 0
         while True:
             try:
                 schedule.run_pending()
-                consecutive_errors = 0
+                time.sleep(1)
             except Exception as e:
-                consecutive_errors += 1
-                wait_time = min(5 * consecutive_errors, 300)
-                logger.error(f"Scheduler error (attempt {consecutive_errors}): {e}")
-                if consecutive_errors >= 5:
-                    logger.critical("Too many scheduler errors. Restarting scheduler...")
-                    consecutive_errors = 0
-                time.sleep(wait_time)
-            time.sleep(1)
-    
-    # Set up the threads with proper error handling
-    def start_thread(target, name):
-        while True:
-            try:
-                thread = threading.Thread(target=target, name=name, daemon=True)
-                thread.start()
-                thread.join()
-            except Exception as e:
-                logger.error(f"Thread {name} crashed: {e}", exc_info=True)
+                logger.error(f"Ошибка планировщика: {e}")
                 time.sleep(10)
     
-    # Start both threads
-    threading.Thread(target=start_thread, args=(run_bot, "bot"), daemon=True).start()
-    threading.Thread(target=start_thread, args=(run_scheduler, "scheduler"), daemon=True).start()
+    # Запускаем бота и планировщик в отдельных потоках
+    bot_thread = threading.Thread(target=run_bot, daemon=True)
+    scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
     
-    # Keep the main thread alive
+    bot_thread.start()
+    scheduler_thread.start()
+    
+    # Держим главный поток активным
     try:
         while True:
-            time.sleep(60)
+            time.sleep(1)
+            # Проверяем статус потоков
+            if not bot_thread.is_alive():
+                logger.error("Поток бота остановлен, перезапуск...")
+                bot_thread = threading.Thread(target=run_bot, daemon=True)
+                bot_thread.start()
+            if not scheduler_thread.is_alive():
+                logger.error("Поток планировщика остановлен, перезапуск...")
+                scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
+                scheduler_thread.start()
     except KeyboardInterrupt:
-        logger.info("Bot stopping...")
+        logger.info("Бот останавливается...")
