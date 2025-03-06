@@ -328,7 +328,7 @@ def track_artist(message):
 def handle_platform_choice(call):
     try:
         _, platform, artist_name = call.data.split(":", 2)
-        chat_id = call.message.chat.id  # Используем chat_id вместо from_user.id
+        chat_id = call.message.chat.id
         
         if not can_add_subscription(chat_id):
             vip_level = get_vip_level(chat_id)
@@ -352,12 +352,19 @@ def handle_platform_choice(call):
         if platform == "Spotify":
             result = search_artist(artist_name)
             if result.get("artists", {}).get("items"):
-                artists = result["artists"]["items"]
-                for artist in artists:
-                    button_text = f"{artist['name']} ({artist.get('followers', {}).get('total', 0)} подписчиков)"
+                artists = result["artists"]["items"][:5]  # Limit to top 5 results
+                for i, artist in enumerate(artists):
+                    # Сокращаем имя артиста если оно слишком длинное
+                    display_name = artist['name'][:20] + "..." if len(artist['name']) > 20 else artist['name']
+                    followers = artist.get('followers', {}).get('total', 0)
+                    button_text = f"{display_name} ({followers:,} подп.)"
+                    
+                    # Create a shorter callback_data using index
+                    callback_data = f"sa:{i}:{artist['id']}"  # sa = select_artist
+                    
                     markup.add(types.InlineKeyboardButton(
                         button_text,
-                        callback_data=f"select_artist:Spotify:{artist['id']}:{artist['name']}"
+                        callback_data=callback_data
                     ))
             else:
                 markup = types.InlineKeyboardMarkup()
@@ -371,15 +378,20 @@ def handle_platform_choice(call):
                 )
                 return
         elif platform == "Yandex Music":
-            artists = search_yandex_artist(artist_name)
+            artists = search_yandex_artist(artist_name)[:5]  # Limit to top 5 results
             if artists:
-                for artist in artists:
-                    # Get the number of tracks as a proxy for popularity since Yandex doesn't provide follower count
+                for i, artist in enumerate(artists):
+                    # Сокращаем имя артиста если оно слишком длинное
+                    display_name = artist.name[:20] + "..." if len(artist.name) > 20 else artist.name
                     tracks_count = len(artist.get_tracks()) if artist.get_tracks() else 0
-                    button_text = f"{artist.name} ({tracks_count} треков)"
+                    button_text = f"{display_name} ({tracks_count:,} тр.)"
+                    
+                    # Create a shorter callback_data using index
+                    callback_data = f"ya:{i}:{artist.id}"  # ya = yandex_artist
+                    
                     markup.add(types.InlineKeyboardButton(
                         button_text,
-                        callback_data=f"select_artist:Yandex Music:{artist.id}:{artist.name}"
+                        callback_data=callback_data
                     ))
             else:
                 markup = types.InlineKeyboardMarkup()
@@ -407,11 +419,25 @@ def handle_platform_choice(call):
         logger.error(f"Error in handle_platform_choice: {e}")
         bot.answer_callback_query(call.id, "Произошла ошибка при поиске артиста.")
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith("select_artist:"))
+@bot.callback_query_handler(func=lambda call: call.data.startswith(("sa:", "ya:")))
 def handle_artist_selection(call):
     try:
-        _, platform, artist_id, artist_name = call.data.split(":", 3)
-        chat_id = call.message.chat.id  # Используем chat_id вместо from_user.id
+        platform_code, _, artist_id = call.data.split(":")
+        chat_id = call.message.chat.id
+        
+        # Convert platform code to full name
+        platform = "Spotify" if platform_code == "sa" else "Yandex Music"
+        
+        # Get artist name based on platform
+        if platform == "Spotify":
+            token = get_spotify_token()
+            headers = {"Authorization": f"Bearer {token}"}
+            response = requests.get(f"https://api.spotify.com/v1/artists/{artist_id}", headers=headers)
+            artist_data = response.json()
+            artist_name = artist_data.get('name', 'Unknown Artist')
+        else:  # Yandex Music
+            artist = yandex_client.artists(artist_id)[0]
+            artist_name = artist.name
         
         if has_subscription(chat_id, artist_id):
             markup = types.InlineKeyboardMarkup()
@@ -427,7 +453,7 @@ def handle_artist_selection(call):
             
         add_subscription(chat_id, artist_id, artist_name, platform=platform)
         
-        # Формируем ссылку на артиста
+        # Format artist URL
         if platform == "Spotify":
             artist_url = f"https://open.spotify.com/artist/{artist_id}"
         else:  # Yandex Music
@@ -508,32 +534,19 @@ def unmute_notifications(message):
 def check_new_releases():
     conn, cursor = get_db()
     # Получаем всех пользователей и их подписки
-    cursor.execute("SELECT telegram_id FROM users WHERE muted = FALSE")
+    cursor.execute("SELECT chat_id FROM users WHERE muted = FALSE")
     users = cursor.fetchall()
     
     for user in users:
-        telegram_id = user[0]
-        subscriptions = get_subscriptions(telegram_id)
+        chat_id = user[0]
+        subscriptions = get_subscriptions(chat_id)
         
         for artist_id, artist_name, platform in subscriptions:
             try:
                 if platform == "Spotify":
-                    # Add retry logic for Spotify token refresh
-                    max_retries = 3
-                    retry_count = 0
-                    while retry_count < max_retries:
-                        try:
-                            album, single = get_spotify_last_releases(artist_id)
-                            break
-                        except Exception as spotify_error:
-                            retry_count += 1
-                            logger.warning(f"Spotify error (attempt {retry_count}/{max_retries}): {spotify_error}")
-                            if retry_count == max_retries:
-                                logger.error(f"Failed to get Spotify releases after {max_retries} attempts")
-                                continue
-                            time.sleep(5)  # Wait before retrying
+                    album, single = get_spotify_last_releases(artist_id)
                     
-                    # Process album if we got one
+                    # Проверяем и отправляем уведомление о новом альбоме
                     if album and isinstance(album, dict) and 'id' in album:
                         if add_release_to_history(artist_id, platform, album['id'], 'album', album['release_date']):
                             message = (
@@ -542,12 +555,9 @@ def check_new_releases():
                                 f"Дата выхода: {album['release_date']}\n"
                                 f"Ссылка: {album['link']}"
                             )
-                            try:
-                                bot.send_message(telegram_id, message)
-                            except Exception as send_error:
-                                logger.error(f"Failed to send album notification: {send_error}")
+                            bot.send_message(chat_id, message)
                     
-                    # Process single if we got one
+                    # Проверяем и отправляем уведомление о новом сингле
                     if single and isinstance(single, dict) and 'id' in single:
                         if add_release_to_history(artist_id, platform, single['id'], 'single', single['release_date']):
                             message = (
@@ -556,44 +566,33 @@ def check_new_releases():
                                 f"Дата выхода: {single['release_date']}\n"
                                 f"Ссылка: {single['link']}"
                             )
-                            try:
-                                bot.send_message(telegram_id, message)
-                            except Exception as send_error:
-                                logger.error(f"Failed to send single notification: {send_error}")
+                            bot.send_message(chat_id, message)
                         
                 elif platform == "Yandex Music":
-                    try:
-                        album, single = get_yandex_last_releases(artist_id)
-                        
-                        if album and isinstance(album, dict) and 'id' in album:
-                            if add_release_to_history(artist_id, platform, str(album['id']), 'album', album['release_date']):
-                                message = (
-                                    f"🎵 Новый альбом от {artist_name} в Яндекс.Музыке!\n"
-                                    f"Название: {album['name']}\n"
-                                    f"Дата выхода: {album['release_date']}\n"
-                                    f"Ссылка: {album['link']}"
-                                )
-                                try:
-                                    bot.send_message(telegram_id, message)
-                                except Exception as send_error:
-                                    logger.error(f"Failed to send Yandex album notification: {send_error}")
-                        
-                        if single and isinstance(single, dict) and 'id' in single:
-                            if add_release_to_history(artist_id, platform, str(single['id']), 'single', single['release_date']):
-                                message = (
-                                    f"🎵 Новый сингл от {artist_name} в Яндекс.Музыке!\n"
-                                    f"Название: {single['name']}\n"
-                                    f"Дата выхода: {single['release_date']}\n"
-                                    f"Ссылка: {single['link']}"
-                                )
-                                try:
-                                    bot.send_message(telegram_id, message)
-                                except Exception as send_error:
-                                    logger.error(f"Failed to send Yandex single notification: {send_error}")
-                    except Exception as yandex_error:
-                        logger.error(f"Error getting Yandex Music releases: {yandex_error}")
-                        continue
-                        
+                    album, single = get_yandex_last_releases(artist_id)
+                    
+                    # Проверяем и отправляем уведомление о новом альбоме
+                    if album and isinstance(album, dict) and 'id' in album:
+                        if add_release_to_history(artist_id, platform, str(album['id']), 'album', album['release_date']):
+                            message = (
+                                f"🎵 Новый альбом от {artist_name} в Яндекс.Музыке!\n"
+                                f"Название: {album['name']}\n"
+                                f"Дата выхода: {album['release_date']}\n"
+                                f"Ссылка: {album['link']}"
+                            )
+                            bot.send_message(chat_id, message)
+                    
+                    # Проверяем и отправляем уведомление о новом сингле
+                    if single and isinstance(single, dict) and 'id' in single:
+                        if add_release_to_history(artist_id, platform, str(single['id']), 'single', single['release_date']):
+                            message = (
+                                f"🎵 Новый сингл от {artist_name} в Яндекс.Музыке!\n"
+                                f"Название: {single['name']}\n"
+                                f"Дата выхода: {single['release_date']}\n"
+                                f"Ссылка: {single['link']}"
+                            )
+                            bot.send_message(chat_id, message)
+                            
             except Exception as e:
                 logger.error(f"Error checking releases for {artist_name}: {e}", exc_info=True)
                 continue
