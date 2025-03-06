@@ -20,31 +20,53 @@ cursor = conn.cursor()
 # Создание таблиц
 def migrate_db():
     try:
-        # Создаем временную таблицу с новой структурой
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS users_new (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                chat_id INTEGER UNIQUE,
-                muted BOOLEAN DEFAULT FALSE,
-                vip_level INTEGER DEFAULT 0
-            )
-        """)
+        # Проверяем существование старой таблицы и столбца telegram_id
+        cursor.execute("PRAGMA table_info(users)")
+        columns = cursor.fetchall()
+        has_telegram_id = any(column[1] == 'telegram_id' for column in columns)
         
-        # Копируем данные из старой таблицы в новую, переименовывая telegram_id в chat_id
-        cursor.execute("""
-            INSERT INTO users_new (id, chat_id, muted, vip_level)
-            SELECT id, telegram_id, muted, vip_level FROM users
-        """)
-        
-        # Удаляем старую таблицу
-        cursor.execute("DROP TABLE users")
-        
-        # Переименовываем новую таблицу
-        cursor.execute("ALTER TABLE users_new RENAME TO users")
-        
-        conn.commit()
-        logger.info("База данных успешно обновлена")
-        
+        if has_telegram_id:
+            # Создаем временную таблицу с новой структурой
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS users_new (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    chat_id INTEGER UNIQUE,
+                    muted BOOLEAN DEFAULT FALSE,
+                    vip_level INTEGER DEFAULT 0
+                )
+            """)
+            
+            # Копируем данные из старой таблицы в новую
+            cursor.execute("""
+                INSERT INTO users_new (id, chat_id, muted, vip_level)
+                SELECT id, telegram_id, muted, vip_level FROM users
+            """)
+            
+            # Удаляем старую таблицу
+            cursor.execute("DROP TABLE users")
+            
+            # Переименовываем новую таблицу
+            cursor.execute("ALTER TABLE users_new RENAME TO users")
+            
+            # Создаем индекс для chat_id
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_chat_id ON users(chat_id)")
+            
+            conn.commit()
+            logger.info("База данных успешно обновлена")
+        else:
+            # Если старой структуры нет, просто создаем новую таблицу
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    chat_id INTEGER UNIQUE,
+                    muted BOOLEAN DEFAULT FALSE,
+                    vip_level INTEGER DEFAULT 0
+                )
+            """)
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_chat_id ON users(chat_id)")
+            conn.commit()
+            logger.info("Создана новая структура базы данных")
+            
     except Exception as e:
         logger.error(f"Ошибка при миграции базы данных: {e}")
         conn.rollback()
@@ -52,20 +74,9 @@ def migrate_db():
 
 def init_db():
     try:
-        # Проверяем существование старой структуры
-        cursor.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='users'")
-        table_info = cursor.fetchone()
-        
-        if table_info:
-            # Проверяем наличие столбца chat_id
-            cursor.execute("PRAGMA table_info(users)")
-            columns = cursor.fetchall()
-            has_chat_id = any(column[1] == 'chat_id' for column in columns)
-            
-            if not has_chat_id:
-                logger.info("Обнаружена старая структура базы данных, выполняем миграцию...")
-                migrate_db()
-        else:
+        # Проверяем существование таблицы users
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")
+        if not cursor.fetchone():
             # Создаем таблицы с новой структурой
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS users (
@@ -75,42 +86,51 @@ def init_db():
                     vip_level INTEGER DEFAULT 0
                 )
             """)
-            
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS payment_requests (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    user_id INTEGER,
-                    amount INTEGER,
-                    slots INTEGER,
-                    status TEXT DEFAULT 'pending',
-                    payment_info TEXT,
-                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    FOREIGN KEY (user_id) REFERENCES users(id)
-                )
-            """)
-            
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS subscriptions (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    user_id INTEGER,
-                    artist_id TEXT,
-                    artist_name TEXT,
-                    platform TEXT,
-                    FOREIGN KEY (user_id) REFERENCES users(id)
-                )
-            """)
-            
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS releases_history (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    artist_id TEXT,
-                    platform TEXT,
-                    release_id TEXT,
-                    release_type TEXT,
-                    release_date TEXT,
-                    UNIQUE(artist_id, platform, release_id)
-                )
-            """)
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_chat_id ON users(chat_id)")
+        else:
+            # Проверяем необходимость миграции
+            cursor.execute("PRAGMA table_info(users)")
+            columns = cursor.fetchall()
+            if any(column[1] == 'telegram_id' for column in columns):
+                logger.info("Обнаружена старая структура базы данных, выполняем миграцию...")
+                migrate_db()
+        
+        # Создаем остальные таблицы
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS payment_requests (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                amount INTEGER,
+                slots INTEGER,
+                status TEXT DEFAULT 'pending',
+                payment_info TEXT,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            )
+        """)
+        
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS subscriptions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                artist_id TEXT,
+                artist_name TEXT,
+                platform TEXT,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            )
+        """)
+        
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS releases_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                artist_id TEXT,
+                platform TEXT,
+                release_id TEXT,
+                release_type TEXT,
+                release_date TEXT,
+                UNIQUE(artist_id, platform, release_id)
+            )
+        """)
         
         conn.commit()
         logger.info("База данных инициализирована")
