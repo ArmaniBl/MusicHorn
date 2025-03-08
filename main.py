@@ -75,9 +75,10 @@ logger = logging.getLogger(__name__)
 def create_session():
     session = requests.Session()
     retry_strategy = Retry(
-        total=5,  # Увеличиваем количество попыток
-        backoff_factor=1,
+        total=10,  # Увеличиваем количество попыток
+        backoff_factor=2,  # Увеличиваем время между попытками
         status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET", "POST"]  # Явно указываем разрешенные методы
     )
     adapter = HTTPAdapter(max_retries=retry_strategy)
     session.mount("https://", adapter)
@@ -541,57 +542,75 @@ def check_new_releases():
         chat_id = user[0]
         subscriptions = get_subscriptions(chat_id)
         
-        for artist_id, artist_name, platform in subscriptions:
+        for artist_id, artist_name, platform, subscription_date in subscriptions:
             try:
                 if platform == "Spotify":
                     album, single = get_spotify_last_releases(artist_id)
                     
-                    # Проверяем и отправляем уведомление о новом альбоме
-                    if album and isinstance(album, dict) and 'id' in album:
-                        if add_release_to_history(artist_id, platform, album['id'], 'album', album['release_date']):
-                            message = (
-                                f"🎵 Новый альбом от {artist_name}!\n"
-                                f"Название: {album['name']}\n"
-                                f"Дата выхода: {album['release_date']}\n"
-                                f"Ссылка: {album['link']}"
-                            )
-                            bot.send_message(chat_id, message)
+                    # Проверяем альбом
+                    if album and isinstance(album, dict):
+                        album_date = album.get('release_date')
+                        if album_date and album_date > subscription_date:
+                            if add_release_to_history(artist_id, platform, album['id'], 'album', album_date):
+                                message = (
+                                    f"🎵 Новый альбом от {artist_name}!\n"
+                                    f"Название: {album['name']}\n"
+                                    f"Дата выхода: {album_date}\n"
+                                    f"Ссылка: {album['link']}"
+                                )
+                                bot.send_message(chat_id, message)
+                                # Обновляем дату подписки на дату выхода альбома
+                                update_subscription_date(chat_id, artist_id, album_date)
+                                continue  # Пропускаем проверку сингла, если вышел альбом
                     
-                    # Проверяем и отправляем уведомление о новом сингле
-                    if single and isinstance(single, dict) and 'id' in single:
-                        if add_release_to_history(artist_id, platform, single['id'], 'single', single['release_date']):
-                            message = (
-                                f"🎵 Новый сингл от {artist_name}!\n"
-                                f"Название: {single['name']}\n"
-                                f"Дата выхода: {single['release_date']}\n"
-                                f"Ссылка: {single['link']}"
-                            )
-                            bot.send_message(chat_id, message)
+                    # Проверяем сингл только если не было альбома
+                    if single and isinstance(single, dict):
+                        single_date = single.get('release_date')
+                        if single_date and single_date > subscription_date:
+                            if add_release_to_history(artist_id, platform, single['id'], 'single', single_date):
+                                message = (
+                                    f"🎵 Новый сингл от {artist_name}!\n"
+                                    f"Название: {single['name']}\n"
+                                    f"Дата выхода: {single_date}\n"
+                                    f"Ссылка: {single['link']}"
+                                )
+                                bot.send_message(chat_id, message)
+                                # Обновляем дату подписки на дату выхода сингла
+                                update_subscription_date(chat_id, artist_id, single_date)
                         
                 elif platform == "Yandex Music":
                     album, single = get_yandex_last_releases(artist_id)
                     
-                    # Проверяем и отправляем уведомление о новом альбоме
-                    if album and isinstance(album, dict) and 'id' in album:
-                        if add_release_to_history(artist_id, platform, str(album['id']), 'album', album['release_date']):
-                            message = (
-                                f"🎵 Новый альбом от {artist_name} в Яндекс.Музыке!\n"
-                                f"Название: {album['name']}\n"
-                                f"Дата выхода: {album['release_date']}\n"
-                                f"Ссылка: {album['link']}"
-                            )
-                            bot.send_message(chat_id, message)
+                    # Проверяем альбом
+                    if album and isinstance(album, dict):
+                        album_date = album.get('release_date')
+                        if album_date and album_date > subscription_date:
+                            if add_release_to_history(artist_id, platform, str(album['id']), 'album', album_date):
+                                message = (
+                                    f"🎵 Новый альбом от {artist_name} в Яндекс.Музыке!\n"
+                                    f"Название: {album['name']}\n"
+                                    f"Дата выхода: {album_date}\n"
+                                    f"Ссылка: {album['link']}"
+                                )
+                                bot.send_message(chat_id, message)
+                                # Обновляем дату подписки на дату выхода альбома
+                                update_subscription_date(chat_id, artist_id, album_date)
+                                continue  # Пропускаем проверку сингла, если вышел альбом
                     
-                    # Проверяем и отправляем уведомление о новом сингле
-                    if single and isinstance(single, dict) and 'id' in single:
-                        if add_release_to_history(artist_id, platform, str(single['id']), 'single', single['release_date']):
-                            message = (
-                                f"🎵 Новый сингл от {artist_name} в Яндекс.Музыке!\n"
-                                f"Название: {single['name']}\n"
-                                f"Дата выхода: {single['release_date']}\n"
-                                f"Ссылка: {single['link']}"
-                            )
-                            bot.send_message(chat_id, message)
+                    # Проверяем сингл только если не было альбома
+                    if single and isinstance(single, dict):
+                        single_date = single.get('release_date')
+                        if single_date and single_date > subscription_date:
+                            if add_release_to_history(artist_id, platform, str(single['id']), 'single', single_date):
+                                message = (
+                                    f"🎵 Новый сингл от {artist_name} в Яндекс.Музыке!\n"
+                                    f"Название: {single['name']}\n"
+                                    f"Дата выхода: {single_date}\n"
+                                    f"Ссылка: {single['link']}"
+                                )
+                                bot.send_message(chat_id, message)
+                                # Обновляем дату подписки на дату выхода сингла
+                                update_subscription_date(chat_id, artist_id, single_date)
                             
             except Exception as e:
                 logger.error(f"Error checking releases for {artist_name}: {e}", exc_info=True)
@@ -1560,30 +1579,36 @@ if __name__ == "__main__":
         while True:
             try:
                 logger.info("Запуск бота...")
-                # Создаем новую сессию для бота
-                telebot.apihelper.SESSION = create_session()
+                # Создаем новую сессию для бота с увеличенным таймаутом
+                session = create_session()
+                telebot.apihelper.SESSION = session
+                telebot.apihelper.READ_TIMEOUT = 60
+                telebot.apihelper.CONNECT_TIMEOUT = 60
+                
                 # Удаляем webhook перед запуском polling
                 bot.remove_webhook()
-                # Добавляем небольшую задержку
-                time.sleep(0.1)
-                # Запускаем бота с настройками против конфликтов
-                bot.polling(none_stop=True, timeout=60, long_polling_timeout=30, interval=1)
+                time.sleep(1)
                 
-            except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as e:
+                # Запускаем бота с настройками против конфликтов
+                bot.polling(none_stop=True, timeout=60, long_polling_timeout=60, interval=3)
+                
+            except (requests.exceptions.ReadTimeout, 
+                    requests.exceptions.ConnectionError, 
+                    requests.exceptions.ProxyError) as e:
                 logger.error(f"Ошибка соединения: {e}")
-                time.sleep(15)
+                time.sleep(30)  # Увеличиваем время ожидания перед повторной попыткой
                 
             except telebot.apihelper.ApiTelegramException as e:
-                if "Conflict with another bot instance" in str(e) or "terminated by other getUpdates request" in str(e):
+                if "Conflict with another bot instance" in str(e):
                     logger.error("Обнаружен конфликт с другим экземпляром бота. Перезапуск...")
-                    time.sleep(5)
+                    time.sleep(10)
                 else:
                     logger.error(f"Telegram API error: {e}")
-                    time.sleep(10)
+                    time.sleep(20)
                 
             except Exception as e:
                 logger.error(f"Неожиданная ошибка: {e}", exc_info=True)
-                time.sleep(10)
+                time.sleep(20)
     
     def run_scheduler():
         while True:

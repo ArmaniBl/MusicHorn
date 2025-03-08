@@ -116,6 +116,7 @@ def init_db():
                 artist_id TEXT,
                 artist_name TEXT,
                 platform TEXT,
+                subscription_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(id)
             )
         """)
@@ -132,11 +133,50 @@ def init_db():
             )
         """)
         
+        # Проверяем, существует ли столбец subscription_date
+        cursor.execute("PRAGMA table_info(subscriptions)")
+        columns = cursor.fetchall()
+        if not any(column[1] == 'subscription_date' for column in columns):
+            # Создаем временную таблицу с новой структурой
+            cursor.execute("""
+                CREATE TABLE subscriptions_new (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER,
+                    artist_id TEXT,
+                    artist_name TEXT,
+                    platform TEXT,
+                    subscription_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users(id)
+                )
+            """)
+            
+            # Копируем данные из старой таблицы в новую
+            cursor.execute("""
+                INSERT INTO subscriptions_new (id, user_id, artist_id, artist_name, platform)
+                SELECT id, user_id, artist_id, artist_name, platform FROM subscriptions
+            """)
+            
+            # Обновляем subscription_date для существующих записей
+            cursor.execute("""
+                UPDATE subscriptions_new 
+                SET subscription_date = CURRENT_TIMESTAMP
+                WHERE subscription_date IS NULL
+            """)
+            
+            # Удаляем старую таблицу
+            cursor.execute("DROP TABLE subscriptions")
+            
+            # Переименовываем новую таблицу
+            cursor.execute("ALTER TABLE subscriptions_new RENAME TO subscriptions")
+            
+            logger.info("Added subscription_date column to subscriptions table")
+        
         conn.commit()
         logger.info("База данных инициализирована")
         
     except Exception as e:
         logger.error(f"Ошибка при инициализации базы данных: {e}")
+        conn.rollback()
         raise
 
 # Добавление пользователя
@@ -177,15 +217,22 @@ def add_subscription(chat_id, artist_id, artist_name, platform):
         user = cursor.fetchone()
 
     user_id = user[0]
-    cursor.execute("INSERT INTO subscriptions (user_id, artist_id, artist_name, platform) VALUES (?, ?, ?, ?)",
-                   (user_id, artist_id, artist_name, platform))
+    cursor.execute("""
+        INSERT INTO subscriptions 
+        (user_id, artist_id, artist_name, platform, subscription_date) 
+        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+    """, (user_id, artist_id, artist_name, platform))
     conn.commit()
     logger.info(f"Подписка добавлена: user_id={user_id}, artist_name={artist_name}, platform={platform}")
 
 # Получение подписок пользователя
 def get_subscriptions(chat_id):
     cursor.execute("""
-        SELECT subscriptions.artist_id, subscriptions.artist_name, subscriptions.platform
+        SELECT 
+            subscriptions.artist_id, 
+            subscriptions.artist_name, 
+            subscriptions.platform,
+            subscriptions.subscription_date
         FROM subscriptions
         JOIN users ON subscriptions.user_id = users.id
         WHERE users.chat_id = ?
@@ -376,6 +423,32 @@ def add_release_to_history(artist_id, platform, release_id, release_type, releas
         return cursor.rowcount > 0  # True если релиз новый
     except Exception as e:
         logger.error(f"Error adding release to history: {e}")
+        return False
+
+def update_subscription_date(chat_id, artist_id, release_date):
+    try:
+        # Получаем user_id
+        cursor.execute("SELECT id FROM users WHERE chat_id = ?", (chat_id,))
+        user = cursor.fetchone()
+        if not user:
+            logger.error(f"User not found for chat_id: {chat_id}")
+            return False
+            
+        user_id = user[0]
+        
+        # Обновляем дату подписки
+        cursor.execute("""
+            UPDATE subscriptions 
+            SET subscription_date = ? 
+            WHERE user_id = ? AND artist_id = ?
+        """, (release_date, user_id, artist_id))
+        
+        conn.commit()
+        logger.info(f"Updated subscription date for artist {artist_id} to {release_date}")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Error updating subscription date: {e}")
         return False
 
 # Инициализация базы данных при импорте
