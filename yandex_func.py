@@ -121,27 +121,43 @@ def create_yandex_playlist(tracks, title="Случайный микс"):
             logger.error("No Yandex Music token available")
             return None
             
-        # Проверяем пользователя
-        try:
-            user_id = yandex_client.me.account.uid
-            logger.info(f"Got user_id: {user_id}")
-        except Exception as e:
-            logger.error(f"Failed to get user info: {e}")
-            return None
-        
-        # Создаем новый плейлист
+        # Создаем новый плейлист для текущего пользователя
         try:
             playlist = yandex_client.users_playlists_create(
                 title=title,
-                visibility="public",
-                user_id=user_id
+                visibility="public"
             )
             logger.info(f"Created playlist with kind={playlist.kind}")
+            
+            # Получаем ID владельца плейлиста
+            owner_uid = "421035053"  # ID пользователя baloyan.dedpool
+            
+            # Изменяем владельца плейлиста
+            data = {
+                "owner": owner_uid,
+                "kind": playlist.kind,
+                "revision": playlist.revision
+            }
+            
+            # Отправляем запрос на изменение владельца
+            base_url = "https://api.music.yandex.net"
+            change_owner_url = f"{base_url}/users/{yandex_client.me.account.uid}/playlists/{playlist.kind}/change-owner"
+            
+            response = yandex_client._request.post(
+                change_owner_url,
+                data,
+                timeout=30
+            )
+            
+            if not isinstance(response, dict):
+                logger.error(f"Failed to change playlist owner: {response}")
+                return None
+                
         except Exception as e:
-            logger.error(f"Failed to create playlist: {e}")
+            logger.error(f"Failed to create/modify playlist: {e}")
             return None
         
-        # Получаем информацию о треках
+        # Остальной код остается тем же
         tracks_info = []
         for track in tracks:
             if 'link' in track:
@@ -166,9 +182,6 @@ def create_yandex_playlist(tracks, title="Случайный микс"):
             return None
         
         try:
-            # Получаем актуальную версию плейлиста
-            current_playlist = yandex_client.users_playlists(kind=playlist.kind)
-            
             # Создаем изменения для плейлиста
             diff = [{
                 'op': 'insert',
@@ -176,7 +189,6 @@ def create_yandex_playlist(tracks, title="Случайный микс"):
                 'tracks': []
             }]
             
-            # Добавляем треки в diff
             for track in tracks_info:
                 track_obj = {
                     'id': int(track['id']),
@@ -184,16 +196,14 @@ def create_yandex_playlist(tracks, title="Случайный микс"):
                 }
                 diff[0]['tracks'].append(track_obj)
             
-            # Формируем данные для запроса
             data = {
                 'kind': playlist.kind,
-                'revision': current_playlist.revision,
+                'revision': playlist.revision,
                 'diff': json.dumps(diff)
             }
             
-            # Отправляем запрос через API клиент
-            base_url = "https://api.music.yandex.net"
-            url = f"{base_url}/users/{yandex_client.me.account.uid}/playlists/{playlist.kind}/change-relative"
+            # Используем ID владельца для добавления треков
+            url = f"{base_url}/users/{owner_uid}/playlists/{playlist.kind}/change-relative"
             
             response = yandex_client._request.post(
                 url,
@@ -203,17 +213,17 @@ def create_yandex_playlist(tracks, title="Случайный микс"):
             
             if isinstance(response, dict):
                 logger.info(f"Successfully added {len(tracks_info)} tracks")
-                time.sleep(2)  # Даем время на обновление плейлиста
+                time.sleep(2)
             else:
                 logger.error(f"Failed to modify playlist: {response}")
             
-            # В любом случае возвращаем ссылку на плейлист
-            logger.info("Returning playlist link")
-            return f"https://music.yandex.ru/users/{yandex_client.me.account.uid}/playlists/{playlist.kind}"
+            # Возвращаем ссылку с username
+            return f"https://music.yandex.ru/users/baloyan.dedpool/playlists/{playlist.kind}"
             
         except Exception as e:
             logger.error(f"Error in playlist modification: {e}")
-            return f"https://music.yandex.ru/users/{yandex_client.me.account.uid}/playlists/{playlist.kind}"
+            # Здесь тоже используем username
+            return f"https://music.yandex.ru/users/baloyan.dedpool/playlists/{playlist.kind}"
             
     except Exception as e:
         logger.error(f"Error in create_yandex_playlist: {e}")

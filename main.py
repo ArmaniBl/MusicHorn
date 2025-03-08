@@ -1478,11 +1478,18 @@ def handle_mix_platform(call):
         playlist_link = None
         if platform == "Yandex Music":
             try:
+                # Сначала удаляем старый микс
+                delete_old_mix(call.from_user.id, call.from_user.first_name)
+                
+                # Создаем новый плейлист
                 playlist_link = create_yandex_playlist(
                     selected_tracks,
                     f"Микс для {call.from_user.first_name}"
                 )
-                if not playlist_link:
+                if playlist_link:
+                    # Заменяем ID на username в ссылке
+                    playlist_link = playlist_link.replace("421035053", "baloyan.dedpool")
+                else:
                     logger.error("Failed to create Yandex Music playlist")
             except Exception as e:
                 logger.error(f"Error in Yandex Music playlist creation: {e}")
