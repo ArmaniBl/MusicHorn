@@ -34,6 +34,9 @@ from yandex_func import (
     delete_old_mix,
     yandex_client
 )
+from flask import Flask
+import signal
+import sys
 
 # Загрузка токенов из .env
 load_dotenv()
@@ -1567,13 +1570,29 @@ def delete_old_mix(user_id, username):
     except Exception as e:
         logger.error(f"Error finding old playlist: {e}")
 
+app = Flask(__name__)
 
+@app.route('/')
+def health_check():
+    return 'Bot is running!'
 
+def run_flask():
+    app.run(host='0.0.0.0', port=10000)
 
+def signal_handler(signum, frame):
+    logger.info("Получен сигнал завершения, останавливаем бота...")
+    # Здесь можно добавить код для корректного завершения работы
+    sys.exit(0)
 
-# Изменим структуру запуска бота в конце файла
+signal.signal(signal.SIGTERM, signal_handler)
+signal.signal(signal.SIGINT, signal_handler)
+
 if __name__ == "__main__":
     print("Бот запущен!")
+    
+    # Запускаем Flask в отдельном потоке
+    flask_thread = threading.Thread(target=run_flask, daemon=True)
+    flask_thread.start()
     
     def run_bot():
         while True:
