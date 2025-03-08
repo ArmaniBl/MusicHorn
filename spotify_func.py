@@ -94,6 +94,7 @@ def get_spotify_last_releases(artist_id):
         albums = album_response.json().get("items", [])
         if albums:
             album = {
+                "id": albums[0]["id"],
                 "name": albums[0]["name"],
                 "release_date": albums[0].get("release_date", "N/A"),
                 "link": albums[0]["external_urls"]["spotify"]
@@ -103,6 +104,7 @@ def get_spotify_last_releases(artist_id):
         singles = single_response.json().get("items", [])
         if singles:
             single = {
+                "id": singles[0]["id"],
                 "name": singles[0]["name"],
                 "release_date": singles[0].get("release_date", "N/A"),
                 "link": singles[0]["external_urls"]["spotify"]

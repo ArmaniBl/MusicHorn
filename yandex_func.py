@@ -54,6 +54,7 @@ def get_yandex_last_releases(artist_id):
         if albums:
             latest_album = albums[0]
             album = {
+                "id": str(latest_album.id),  # Добавляем ID как строку
                 "name": latest_album.title,
                 "release_date": latest_album.release_date if latest_album.release_date else "N/A",
                 "link": f"https://music.yandex.ru/album/{latest_album.id}"
@@ -62,6 +63,7 @@ def get_yandex_last_releases(artist_id):
         if singles:
             latest_single = singles[0]
             single = {
+                "id": str(latest_single.id),  # Добавляем ID как строку
                 "name": latest_single.title,
                 "release_date": latest_single.release_date if latest_single.release_date else "N/A",
                 "link": f"https://music.yandex.ru/album/{latest_single.id}"
