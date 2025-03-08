@@ -226,18 +226,36 @@ def add_subscription(chat_id, artist_id, artist_name, platform):
     logger.info(f"Подписка добавлена: user_id={user_id}, artist_name={artist_name}, platform={platform}")
 
 # Получение подписок пользователя
+def get_new_connection():
+    return sqlite3.connect("database.db", check_same_thread=False)
+
 def get_subscriptions(chat_id):
-    cursor.execute("""
-        SELECT 
-            subscriptions.artist_id, 
-            subscriptions.artist_name, 
-            subscriptions.platform,
-            subscriptions.subscription_date
-        FROM subscriptions
-        JOIN users ON subscriptions.user_id = users.id
-        WHERE users.chat_id = ?
-    """, (chat_id,))
-    return cursor.fetchall()
+    try:
+        # Создаем новое соединение для этого запроса
+        local_conn = get_new_connection()
+        local_cursor = local_conn.cursor()
+        
+        local_cursor.execute("""
+            SELECT 
+                subscriptions.artist_id, 
+                subscriptions.artist_name, 
+                subscriptions.platform,
+                subscriptions.subscription_date
+            FROM subscriptions
+            JOIN users ON subscriptions.user_id = users.id
+            WHERE users.chat_id = ?
+        """, (chat_id,))
+        
+        result = local_cursor.fetchall()
+        
+        # Закрываем локальное соединение
+        local_cursor.close()
+        local_conn.close()
+        
+        return result
+    except Exception as e:
+        logger.error(f"Error in get_subscriptions: {e}")
+        return []
 
 def get_db():
     return conn, cursor

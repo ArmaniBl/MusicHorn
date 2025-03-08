@@ -1217,7 +1217,6 @@ def handle_payment_action(call):
 @bot.callback_query_handler(func=lambda call: call.data == "create_mix")
 def handle_create_mix(call):
     try:
-        # Сначала пробуем ответить на callback query
         try:
             bot.answer_callback_query(call.id)
         except telebot.apihelper.ApiTelegramException as e:
@@ -1230,7 +1229,6 @@ def handle_create_mix(call):
         subscriptions = get_subscriptions(call.message.chat.id)
         
         if not subscriptions:
-            # Отправляем новое сообщение вместо редактирования
             try:
                 bot.delete_message(call.message.chat.id, call.message.message_id)
             except:
@@ -1251,7 +1249,6 @@ def handle_create_mix(call):
         back_btn = types.InlineKeyboardButton("🔙 Назад", callback_data="show_main_menu")
         markup.add(spotify_btn, yandex_btn, back_btn)
 
-        # Пробуем отредактировать сообщение, если не получается - отправляем новое
         try:
             bot.edit_message_text(
                 "Выберите платформу для создания микса:",
@@ -1396,19 +1393,12 @@ def handle_mix_platform(call):
         platform = call.data.split(":")[1]
         subscriptions = get_subscriptions(call.from_user.id)
         
-        # Получаем имя пользователя
-        user_name = call.from_user.first_name
-        
-        # Удаляем старый микс перед созданием нового
-        if platform == "Yandex Music":
-            delete_old_mix(call.from_user.id, user_name)
-        elif platform == "Spotify":
-            token = get_spotify_token()
-            if token:
-                delete_old_spotify_mix(token, user_name)
-        
         # Фильтруем подписки по выбранной платформе
-        platform_subscriptions = [sub for sub in subscriptions if sub[2] == platform]
+        platform_subscriptions = [
+            (sub[0], sub[1], sub[2]) # artist_id, artist_name, platform
+            for sub in subscriptions 
+            if sub[2] == platform
+        ]
         
         if not platform_subscriptions:
             bot.answer_callback_query(call.id)
@@ -1487,7 +1477,7 @@ def handle_mix_platform(call):
             try:
                 playlist_link = create_yandex_playlist(
                     selected_tracks,
-                    f"Микс для {user_name}"
+                    f"Микс для {call.from_user.first_name}"
                 )
                 if not playlist_link:
                     logger.error("Failed to create Yandex Music playlist")
@@ -1495,7 +1485,7 @@ def handle_mix_platform(call):
                 logger.error(f"Error in Yandex Music playlist creation: {e}")
         elif platform == "Spotify":
             try:
-                playlist_link = create_spotify_playlist(selected_tracks, user_name)
+                playlist_link = create_spotify_playlist(selected_tracks, call.from_user.first_name)
                 if not playlist_link:
                     logger.error("Failed to create Spotify playlist")
             except Exception as e:
